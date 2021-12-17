@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #更新一次UI文件
 from os import system
-system('pyuic5 test.ui -o Ui_test.py')
+system('pyuic5 test.ui -o ./Ui_test.py')
 
 #pyqt5
 import sys
@@ -37,7 +37,26 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.text_dbc1.setText('file fromat error, plz select again') #获取到的绝对路径显示在路径框中
             self.flag_OK1.setText('Error!')
         else:
-            self.flag_OK1.setText('OK!')
+            self.flag_OK1.setText('dbc loaded!')
+
+    def button_action_dbc2(self):
+        self.flag_OK2.setText('None!')
+        try:
+            dbc_filepath2 = dbcfile_acquire() 
+            self.text_dbc2.setText(dbc_filepath2) #获取到的绝对路径显示在路径框中
+        except:
+            return 0 #对话框如果意外终止，直接退出
+
+        try:
+            db2 = cantools.database.load_file(dbc_filepath2) #对dbc进行解析
+        except:
+            self.text_dbc2.setText('file fromat error, plz select again') #获取到的绝对路径显示在路径框中
+            self.flag_OK2.setText('Error!')
+        else:
+            self.flag_OK2.setText('dbc loaded!')        
+        
+
+
 
 
 if __name__ == '__main__':
