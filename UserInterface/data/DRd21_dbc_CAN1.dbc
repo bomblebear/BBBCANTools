@@ -1,0 +1,288 @@
+VERSION ""
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: ASCU HVBMS LVBMS INS SNF DB EBS_ASU
+
+BO_ 768 EBS_ASU_CMD: 8 EBS_ASU
+ SG_ EBS_MC_Volt : 56|8@1+ (4.7,0) [0|600] "" Vector__XXX
+ SG_ EBS_AM_Locked : 55|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ EBS_MC_Status : 52|3@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EBS_StartExternal : 44|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ EBS_Init_Step : 40|4@1+ (1,0) [0|10] "" Vector__XXX
+ SG_ EBS_WDO : 39|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ AS_Close_SDC : 38|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ EBS_Error : 37|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ RES_Status : 36|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ EBS_APS_Power : 35|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ SDC_is_ready : 34|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ SHTD_AS : 33|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ SHTD_RES : 32|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ ASCU_GO : 31|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ ASCU_AM : 28|3@1+ (1,0) [0|5] "" Vector__XXX
+ SG_ ASCU_CANError : 27|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ INS_CANError : 26|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ DB_CANError : 25|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ SNF_CANError : 24|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LVBMS_CANError : 23|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ HVBMS_CANError : 22|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MC_Enable : 20|2@1+ (1,0) [0|2] "" ASCU
+ SG_ HVDCDC_Enable : 18|2@1+ (1,0) [0|2] "" LVBMS
+ SG_ HVBMS_Mask : 16|2@1+ (1,0) [0|2] "" HVBMS
+ SG_ AS_Step : 12|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ DB_EFStep : 8|4@1- (1,0) [-8|7] "" DB
+ SG_ HVBMS_cAIRPRE : 6|2@1+ (1,0) [0|2] "" HVBMS
+ SG_ HVBMS_cAIRN : 4|2@1+ (1,0) [0|2] "" HVBMS
+ SG_ HVBMS_cAIRP : 2|2@1+ (1,0) [0|2] "" HVBMS
+ SG_ SNF_cSHTD : 0|2@1+ (1,0) [0|2] "" SNF
+
+BO_ 1537 EBS_ASU_PumpSensors: 8 EBS_ASU
+ SG_ Sensor4 : 48|16@1+ (1,0) [0|1] "" ASCU
+ SG_ Sensor3 : 32|16@1+ (1,0) [0|1] "" ASCU
+ SG_ Sensor2 : 16|16@1+ (1,0) [0|1] "" ASCU
+ SG_ Sensor1 : 0|16@1+ (1,0) [0|1] "" ASCU
+
+BO_ 769 EBS_ASU_KeySensors: 8 EBS_ASU
+ SG_ EBS_APPS2 : 48|16@1+ (1,0) [0|1] "" ASCU
+ SG_ EBS_APPS1 : 32|16@1+ (1,0) [0|1] "" ASCU
+ SG_ EBS_STS : 16|16@1+ (1,0) [0|1] "" ASCU
+ SG_ EBS_BSE : 0|16@1+ (1,0) [0|1] "" ASCU
+
+BO_ 771 ASCU_EBSCtrl: 2 ASCU
+ SG_ EBS_ASFinished_Flag : 9|1@1+ (1,0) [0|0] "" EBS_ASU
+ SG_ EBS_Trigger_Command : 8|1@1+ (1,0) [0|0] "" EBS_ASU
+ SG_ EBS_Brake_Demand : 0|8@1+ (1,0) [0|60] "%" EBS_ASU
+
+BO_ 1638 ASCU_EBSDebugMode: 1 ASCU
+ SG_ EBS_DebugEnable : 0|8@1+ (1,0) [0|60] "%" EBS_ASU
+
+BO_ 772 ASCU_MC_Info: 8 ASCU
+ SG_ MCRR_ErrorInfo : 60|4@1+ (1,0) [0|0] "" EBS_ASU
+ SG_ MCRR_DiagnosticNum : 48|12@1+ (1,0) [0|0] "" EBS_ASU
+ SG_ MCRL_ErrorInfo : 44|4@1+ (1,0) [0|0] "" EBS_ASU
+ SG_ MCRL_DiagnosticNum : 32|12@1+ (1,0) [0|0] "" EBS_ASU
+ SG_ MCRR_Voltage : 20|12@1+ (0.25,0) [0|0] "" EBS_ASU
+ SG_ MCRL_Voltage : 8|12@1+ (0.25,0) [0|0] "" EBS_ASU
+ SG_ MCRR_Status : 4|4@1+ (1,0) [0|5] "" EBS_ASU
+ SG_ MCRL_Status : 0|4@1+ (1,0) [0|5] "" EBS_ASU
+
+BO_ 848 ASCU_Veh_Info: 1 ASCU
+ SG_ Vehicle_Speed : 0|8@1+ (1,0) [0|200] "km/h" DB
+
+BO_ 784 HVBMS_Status: 4 HVBMS
+ SG_ HVBMS_Reserved : 18|6@1+ (1,0) [0|0] "" EBS_ASU
+ SG_ HVBMS_bIMD_Sta : 17|1@1+ (1,0) [0|1] "" EBS_ASU
+ SG_ HVBMS_bAMS_Sta : 16|1@1+ (1,0) [0|1] "" EBS_ASU
+ SG_ HVBMS_bSHTD_fIMDRelay : 15|1@1+ (1,0) [0|1] "" EBS_ASU
+ SG_ HVBMS_bSHTD_IMD : 14|1@1+ (1,0) [0|1] "" EBS_ASU
+ SG_ HVBMS_bSHTD_AMS : 13|1@1+ (1,0) [0|1] "" EBS_ASU
+ SG_ HVBMS_bSHTD_Sta : 12|1@1+ (1,0) [0|1] "" EBS_ASU
+ SG_ HVBMS_bDischarge : 11|1@1+ (1,0) [0|1] "" EBS_ASU
+ SG_ HVBMS_bAIRPRE : 10|1@1+ (1,0) [0|1] "" EBS_ASU
+ SG_ HVBMS_bAIRN : 9|1@1+ (1,0) [0|1] "" EBS_ASU
+ SG_ HVBMS_bAIRP : 8|1@1+ (1,0) [0|1] "" EBS_ASU
+ SG_ HVBMS_DiagnosticNum : 0|8@1+ (1,0) [0|255] "" EBS_ASU
+
+BO_ 786 HVBMS_Power: 8 HVBMS
+ SG_ HVBMS_BatSoC : 48|16@1+ (0.0000152588,0) [0|1] "" ASCU
+ SG_ HVBMS_BatCurrent : 32|16@1- (4.5776,0) [-150000|150000] "mA" ASCU
+ SG_ HVBMS_BatVolt : 16|16@1- (18.3105,0) [-600000|600000] "mV" ASCU
+ SG_ HVBMS_BatPower : 0|16@1- (2.7466,0) [-90000|90000] "W" ASCU
+
+BO_ 1296 HVBMS_Data: 6 HVBMS
+ SG_ HVBMS_Cell_VoltMin : 36|12@1+ (0.00113288,0) [0|4.638816] "V" Vector__XXX
+ SG_ HVBMS_Cell_VoltMax : 24|12@1+ (0.00113288,0) [0|4.638816] "V" Vector__XXX
+ SG_ HVBMS_Cell_TempMin : 12|12@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ HVBMS_Cell_TempMax : 0|12@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 770 DB_Status: 4 DB
+ SG_ DB_Pick_right : 20|4@1+ (1,0) [0|15] "" EBS_ASU
+ SG_ DB_Pick_left : 16|4@1+ (1,0) [0|15] "" EBS_ASU
+ SG_ DB_SWR_right : 12|4@1+ (1,0) [0|15] "" EBS_ASU
+ SG_ DB_SWR_left : 8|4@1+ (1,0) [0|15] "" EBS_ASU
+ SG_ DB_R2D : 7|1@1+ (1,0) [0|1] "" EBS_ASU
+ SG_ DB_MCErrorReset : 6|1@1+ (1,0) [0|1] "" ASCU
+ SG_ DB_TV : 5|1@1+ (1,0) [0|1] "" ASCU
+ SG_ DB_TC : 4|1@1+ (1,0) [0|1] "" ASCU
+ SG_ DB_REG : 3|1@1+ (1,0) [0|1] "" ASCU
+ SG_ DB_Mask : 2|1@1+ (1,0) [0|1] "" EBS_ASU
+ SG_ DB_Stop : 1|1@1+ (1,0) [0|1] "" EBS_ASU
+ SG_ DB_Start : 0|1@1+ (1,0) [0|1] "" EBS_ASU
+
+
+
+CM_ SG_ 768 EBS_MC_Volt "EBS Received MC volt";
+CM_ SG_ 768 EBS_AM_Locked "When TS is activated, Autonomous Mission shuold be locked and cannot change unless LV is rebooted.";
+CM_ SG_ 768 EBS_MC_Status "Status of MC";
+CM_ SG_ 768 EBS_StartExternal "TS Activation Button for Autonomous Missions";
+CM_ SG_ 768 EBS_Init_Step "EBS init-check steps";
+CM_ SG_ 768 EBS_WDO "Watchdog pin output";
+CM_ SG_ 768 AS_Close_SDC "EBS logic signal, which latchs the SDC status.";
+CM_ SG_ 768 EBS_Error "Status of EBS supervisor";
+CM_ SG_ 768 RES_Status "Status of RES relays";
+CM_ SG_ 768 EBS_APS_Power "Status of EBS power stage's power supply";
+CM_ SG_ 768 SDC_is_ready "EBS logic signal, which indicate the SDC status (fault latch included) before EBS.";
+CM_ SG_ 768 SHTD_AS "Shutdown Circuit Status after EBS non-programmable circuit";
+CM_ SG_ 768 SHTD_RES "Shutdown Circuit Status after RES relay1";
+CM_ SG_ 768 ASCU_GO "RES GO Signal";
+CM_ SG_ 768 ASCU_AM "Autonomous Mission";
+CM_ SG_ 768 ASCU_CANError "Status of ASCU_CANError";
+CM_ SG_ 768 INS_CANError "Status of INS_CANError";
+CM_ SG_ 768 DB_CANError "Status of DB_CANError";
+CM_ SG_ 768 SNF_CANError "Status of SNF_CANError";
+CM_ SG_ 768 LVBMS_CANError "Status of LVBMS_CANError";
+CM_ SG_ 768 HVBMS_CANError "Status of HVBMS_CANError";
+CM_ SG_ 768 MC_Enable "Command of Inverter";
+CM_ SG_ 768 HVDCDC_Enable "Command of HV DCDC status";
+CM_ SG_ 768 HVBMS_Mask "Offline detection of BMS";
+CM_ SG_ 768 AS_Step "Step of Autonomous Status Flow";
+CM_ SG_ 768 DB_EFStep "Step of Electricity Flow";
+CM_ SG_ 768 HVBMS_cAIRPRE "Signal Critical Command, determines the status of AIR Precharge";
+CM_ SG_ 768 HVBMS_cAIRN "Signal Critical Command, determines the status of AIR Negative";
+CM_ SG_ 768 HVBMS_cAIRP "Signal Critical Command, determines the status of AIR Positive";
+CM_ SG_ 768 SNF_cSHTD "Command of Shutdown Circuit Relay to SNF";
+CM_ SG_ 769 EBS_APPS2 "Sensor Signal";
+CM_ SG_ 769 EBS_APPS1 "Sensor Signal";
+CM_ SG_ 769 EBS_STS "Sensor Signal";
+CM_ SG_ 769 EBS_BSE "Sensor Signal";
+CM_ SG_ 771 EBS_ASFinished_Flag "==1, AS Finished (ASSI Blue Cont) V47and EBS Triggered";
+CM_ SG_ 771 EBS_Trigger_Command "==1, EBS Triggered";
+CM_ SG_ 771 EBS_Brake_Demand "Brake Demand for Service Brake";
+CM_ SG_ 1638 EBS_DebugEnable "EBS DebugMode(for HIL)";
+CM_ SG_ 772 MCRR_ErrorInfo "Error Information of MCRR";
+CM_ SG_ 772 MCRR_DiagnosticNum "Diagnostic Code of MCRR";
+CM_ SG_ 772 MCRL_ErrorInfo "Error Information of MCRL";
+CM_ SG_ 772 MCRL_DiagnosticNum "Diagnostic Code of MCRL";
+CM_ SG_ 772 MCRR_Voltage "Voltage of MCRR";
+CM_ SG_ 772 MCRL_Voltage "Voltage of MCRL";
+CM_ SG_ 772 MCRR_Status "Status of MCRR";
+CM_ SG_ 772 MCRL_Status "Status of MCRL";
+CM_ SG_ 784 HVBMS_Reserved "Reserved bits, as backup";
+CM_ SG_ 784 HVBMS_bIMD_Sta "Status of IMD";
+CM_ SG_ 784 HVBMS_bAMS_Sta "Status of AMS";
+CM_ SG_ 784 HVBMS_bSHTD_fIMDRelay "Status of Shutdown Circuit fIMD Relay";
+CM_ SG_ 784 HVBMS_bSHTD_IMD "Status of Shutdown Circuit IMD";
+CM_ SG_ 784 HVBMS_bSHTD_AMS "Status of Shutdown Circuit";
+CM_ SG_ 784 HVBMS_bSHTD_Sta "Status of Shutdown Circuit";
+CM_ SG_ 784 HVBMS_bDischarge "Status of AIR Discharge";
+CM_ SG_ 784 HVBMS_bAIRPRE "Status of AIR Precharge";
+CM_ SG_ 784 HVBMS_bAIRN "Status of AIR Negative";
+CM_ SG_ 784 HVBMS_bAIRP "Status of AIR Positive";
+CM_ SG_ 784 HVBMS_DiagnosticNum "HVBMS Diagnostic Code, check the value description for detail. If different types of error occurs at the same time, the Diagnostic Code may be mixed.";
+CM_ SG_ 786 HVBMS_BatSoC "SoC of TS";
+CM_ SG_ 786 HVBMS_BatCurrent "Total Current of TS ";
+CM_ SG_ 786 HVBMS_BatVolt "Total Voltage of TS";
+CM_ SG_ 786 HVBMS_BatPower "Total Power of TS ";
+CM_ SG_ 1296 HVBMS_Cell_VoltMin "Lowest cell voltage value among all the cells in Accumulator Container";
+CM_ SG_ 1296 HVBMS_Cell_VoltMax "Highest cell voltage value among all the cells in Accumulator Container";
+CM_ SG_ 1296 HVBMS_Cell_TempMin "Lowest cell temperature value among all the cells in Accumulator Container";
+CM_ SG_ 1296 HVBMS_Cell_TempMax "Highest cell temperature value among all the cells in Accumulator Container";
+CM_ SG_ 770 DB_Pick_right "Status of Pick right";
+CM_ SG_ 770 DB_Pick_left "Status of Pick left";
+CM_ SG_ 770 DB_SWR_right "Status of SWR right";
+CM_ SG_ 770 DB_SWR_left "Status of SWR left";
+CM_ SG_ 770 DB_R2D "Status of Ready to drive button";
+CM_ SG_ 770 DB_MCErrorReset "Status of MCErrorReset button";
+CM_ SG_ 770 DB_TV "Status of TV button";
+CM_ SG_ 770 DB_TC "Status of TC button";
+CM_ SG_ 770 DB_REG "Status of REG button";
+CM_ SG_ 770 DB_Mask "Status of mask button";
+CM_ SG_ 770 DB_Stop "Status of stop button";
+CM_ SG_ 770 DB_Start "Status of start button";
+
+
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","Trigger";
+BA_DEF_ BU_  "NmNode" ENUM  "YES","NO";
+BA_DEF_  "BusType" STRING ;
+BA_DEF_ BU_  "NmStationAddress" HEX 0 2047;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 5 1000;
+BA_DEF_ SG_  "SendType" ENUM  "Cyclic";
+BA_DEF_DEF_  "GenMsgSendType" "Cyclic";
+BA_DEF_DEF_  "NmNode" "YES";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "GenMsgCycleTime" 10;
+BA_DEF_DEF_  "SendType" "Cyclic";
+BA_ "GenMsgCycleTime" BO_ 768 10;
+BA_ "GenMsgCycleTime" BO_ 1537 200;
+BA_ "GenMsgCycleTime" BO_ 769 10;
+BA_ "GenMsgCycleTime" BO_ 771 10;
+BA_ "GenMsgCycleTime" BO_ 1638 10;
+BA_ "GenMsgCycleTime" BO_ 772 50;
+BA_ "GenMsgCycleTime" BO_ 848 50;
+BA_ "GenMsgCycleTime" BO_ 784 10;
+BA_ "GenMsgCycleTime" BO_ 786 10;
+BA_ "GenMsgCycleTime" BO_ 1296 500;
+BA_ "GenMsgCycleTime" BO_ 770 100;
+VAL_ 768 EBS_AM_Locked 1 "On" 0 "Off";
+VAL_ 768 EBS_MC_Status 1 "On" 0 "Off";
+VAL_ 768 AS_Close_SDC 1 "On" 0 "Off";
+VAL_ 768 EBS_Error 1 "On" 0 "Off";
+VAL_ 768 RES_Status 1 "On" 0 "Off";
+VAL_ 768 ASCU_GO 1 "On" 0 "Off";
+VAL_ 768 ASCU_AM 1 "On" 0 "Off";
+VAL_ 768 ASCU_CANError 1 "On" 0 "Off";
+VAL_ 768 INS_CANError 1 "On" 0 "Off";
+VAL_ 768 DB_CANError 1 "On" 0 "Off";
+VAL_ 768 SNF_CANError 1 "On" 0 "Off";
+VAL_ 768 LVBMS_CANError 1 "On" 0 "Off";
+VAL_ 768 HVBMS_CANError 1 "On" 0 "Off";
+VAL_ 768 MC_Enable 1 "On" 0 "Off";
+VAL_ 768 HVDCDC_Enable 1 "On" 0 "Off";
+VAL_ 768 HVBMS_Mask 1 "On" 0 "Off";
+VAL_ 768 HVBMS_cAIRPRE 1 "On" 0 "Off";
+VAL_ 768 HVBMS_cAIRN 1 "On" 0 "Off";
+VAL_ 768 HVBMS_cAIRP 1 "On" 0 "Off";
+VAL_ 768 SNF_cSHTD 1 "On" 0 "Off";
+VAL_ 772 MCRR_Status 1 "On" 0 "Off";
+VAL_ 772 MCRL_Status 1 "On" 0 "Off";
+VAL_ 784 HVBMS_bIMD_Sta 1 "On" 0 "Off";
+VAL_ 784 HVBMS_bAMS_Sta 1 "On" 0 "Off";
+VAL_ 784 HVBMS_bSHTD_fIMDRelay 1 "On" 0 "Off";
+VAL_ 784 HVBMS_bSHTD_IMD 1 "On" 0 "Off";
+VAL_ 784 HVBMS_bSHTD_AMS 1 "On" 0 "Off";
+VAL_ 784 HVBMS_bSHTD_Sta 1 "On" 0 "Off";
+VAL_ 784 HVBMS_bDischarge 1 "On" 0 "Off";
+VAL_ 784 HVBMS_bAIRPRE 1 "On" 0 "Off";
+VAL_ 784 HVBMS_bAIRN 1 "On" 0 "Off";
+VAL_ 784 HVBMS_bAIRP 1 "On" 0 "Off";
+VAL_ 770 DB_R2D 1 "On" 0 "Off";
+VAL_ 770 DB_MCErrorReset 1 "On" 0 "Off";
+VAL_ 770 DB_TV 1 "On" 0 "Off";
+VAL_ 770 DB_TC 1 "On" 0 "Off";
+VAL_ 770 DB_REG 1 "On" 0 "Off";
+VAL_ 770 DB_Mask 1 "On" 0 "Off";
+VAL_ 770 DB_Stop 1 "On" 0 "Off";
+VAL_ 770 DB_Start 1 "On" 0 "Off";
+
+
