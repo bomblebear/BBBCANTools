@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
+import cantools
 
 def dbcfile_acquire():
     '''打开选择文件夹对话框'''
@@ -11,10 +12,23 @@ def dbcfile_acquire():
 
     return filepath
 
+def dbc_msg_list(candbc):
+    msglist = []
+    for msg in candbc.messages:
+        msglist.append(str(msg.name))
+    
+    return msglist
+
+
 
 if __name__ == '__main__':
 
     filepath = dbcfile_acquire()
 
+    db = cantools.database.load_file(filepath) 
+
+    list = dbc_msg_list(db)
+
+    print(list)
     #print('Folderpath:',folderpath)
     print('Filepath:',filepath)

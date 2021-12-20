@@ -9,7 +9,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from Ui_test import Ui_MainWindow
 
 #dbc file and process
-from dbcfile_acquire import dbcfile_acquire
+from dbcfile_acquire import *
 import can
 import cantools
 
@@ -33,12 +33,16 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         try:
             db1 = cantools.database.load_file(dbc_filepath1) #对dbc进行解析
+            msglist_1 = dbc_msg_list(db1)
         except:
             self.text_dbc1.setText('file fromat error, plz select again') #获取到的绝对路径显示在路径框中
             self.flag_OK1.setText('Error!')
         else:
             self.flag_OK1.setText('dbc loaded!')
 
+
+
+    #channel 2 再说，先整一路
     def button_action_dbc2(self):
         self.flag_OK2.setText('None!')
         try:
@@ -49,12 +53,16 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         try:
             db2 = cantools.database.load_file(dbc_filepath2) #对dbc进行解析
+            msglist_2 = dbc_msg_list(db2)
         except:
             self.text_dbc2.setText('file fromat error, plz select again') #获取到的绝对路径显示在路径框中
             self.flag_OK2.setText('Error!')
         else:
             self.flag_OK2.setText('dbc loaded!')        
         
+
+
+
 
 
 
