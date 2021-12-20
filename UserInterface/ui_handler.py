@@ -77,14 +77,15 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
             cycletime = '0'
         self.cycletime_ch1_1.setText(cycletime)
         
-
         self.signal_edit_window.clear()
+
         try:  
             for i in range(len(selected_msg.signals)):
                 #print("\"%s\"" % selected_msg.signals[i].name + " : "+"0"+" , ")
-                self.signal_edit_window.appendPlainText("\"%s\"" % selected_msg.signals[i].name + " : "+"0"+" , ")
+                self.signal_edit_window.appendPlainText("\"%s\"" % selected_msg.signals[i].name + " : "+"0")
         except:
             pass
+
 
 
     def msg_select_action_ch1_2(self):
@@ -94,4 +95,29 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def msg_select_action_ch1_4(self):
         pass
     def msg_select_action_ch1_5(self):
+        pass
+
+    
+    def msg_encode_action_ch1_1(self):
+        selected_msgname = self.comboBox_ch1_1.currentText()
+        selected_msg = self.db1.get_message_by_name(selected_msgname)
+        tt = self.signal_edit_window.toPlainText().split('\n')
+
+        tt[0] = tt[0].replace("'","")
+        print(tt[0])
+    
+        #self.packedmsg_ch1_1 = selected_msg.encode(self.signal_edit_window.toPlainText())
+
+        #self.datafield_overview_ch1_1.setText(self.packedmsg_ch1_1)
+
+    def msg_encode_action_ch1_2(self):
+        pass
+
+    def msg_encode_action_ch1_3(self):
+        pass
+
+    def msg_encode_action_ch1_4(self):
+        pass
+
+    def msg_encode_action_ch1_5(self):
         pass

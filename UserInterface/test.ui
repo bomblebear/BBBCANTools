@@ -17,9 +17,9 @@
    <widget class="QPlainTextEdit" name="signal_edit_window">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>760</x>
       <y>180</y>
-      <width>271</width>
+      <width>261</width>
       <height>301</height>
      </rect>
     </property>
@@ -29,7 +29,7 @@
      <rect>
       <x>30</x>
       <y>150</y>
-      <width>681</width>
+      <width>711</width>
       <height>371</height>
      </rect>
     </property>
@@ -346,6 +346,71 @@
        </rect>
       </property>
      </widget>
+     <widget class="QPushButton" name="datafiled_refresh_save_ch1_1">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>40</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>save</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="datafiled_refresh_save_ch1_2">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>90</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>save</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="datafiled_refresh_save_ch1_3">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>140</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>save</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="datafiled_refresh_save_ch1_4">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>190</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>save</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="datafiled_refresh_save_ch1_5">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>240</y>
+        <width>41</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>save</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -537,25 +602,12 @@
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="datafiled_refresh">
-    <property name="geometry">
-     <rect>
-      <x>750</x>
-      <y>490</y>
-      <width>94</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>save</string>
-    </property>
-   </widget>
    <widget class="QTextBrowser" name="refresh_diag">
     <property name="geometry">
      <rect>
-      <x>860</x>
+      <x>760</x>
       <y>490</y>
-      <width>161</width>
+      <width>261</width>
       <height>31</height>
      </rect>
     </property>
@@ -709,6 +761,86 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>datafiled_refresh_save_ch1_1</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>msg_encode_action_ch1_1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>727</x>
+     <y>240</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>681</x>
+     <y>572</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>datafiled_refresh_save_ch1_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>msg_encode_action_ch1_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>706</x>
+     <y>279</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>594</x>
+     <y>623</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>datafiled_refresh_save_ch1_3</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>msg_encode_action_ch1_3()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>720</x>
+     <y>347</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>608</x>
+     <y>658</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>datafiled_refresh_save_ch1_4</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>msg_encode_action_ch1_4()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>710</x>
+     <y>396</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>532</x>
+     <y>700</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>datafiled_refresh_save_ch1_5</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>msg_encode_action_ch1_5()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>702</x>
+     <y>435</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>600</x>
+     <y>740</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>Action()</slot>
@@ -719,5 +851,10 @@
   <slot>msg_select_action_ch1_3()</slot>
   <slot>msg_select_action_ch1_4()</slot>
   <slot>msg_select_action_ch1_5()</slot>
+  <slot>msg_encode_action_ch1_1()</slot>
+  <slot>msg_encode_action_ch1_2()</slot>
+  <slot>msg_encode_action_ch1_3()</slot>
+  <slot>msg_encode_action_ch1_4()</slot>
+  <slot>msg_encode_action_ch1_5()</slot>
  </slots>
 </ui>
