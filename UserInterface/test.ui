@@ -14,12 +14,12 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPlainTextEdit" name="plainTextEdit_2">
+   <widget class="QPlainTextEdit" name="signal_edit_window">
     <property name="geometry">
      <rect>
-      <x>770</x>
+      <x>750</x>
       <y>180</y>
-      <width>251</width>
+      <width>271</width>
       <height>301</height>
      </rect>
     </property>
@@ -27,9 +27,9 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>30</x>
       <y>150</y>
-      <width>711</width>
+      <width>681</width>
       <height>371</height>
      </rect>
     </property>
@@ -45,7 +45,7 @@
        <rect>
         <x>20</x>
         <y>40</y>
-        <width>101</width>
+        <width>171</width>
         <height>27</height>
        </rect>
       </property>
@@ -55,7 +55,7 @@
        <rect>
         <x>20</x>
         <y>90</y>
-        <width>101</width>
+        <width>171</width>
         <height>27</height>
        </rect>
       </property>
@@ -65,7 +65,7 @@
        <rect>
         <x>20</x>
         <y>140</y>
-        <width>101</width>
+        <width>171</width>
         <height>27</height>
        </rect>
       </property>
@@ -75,7 +75,7 @@
        <rect>
         <x>20</x>
         <y>190</y>
-        <width>101</width>
+        <width>171</width>
         <height>27</height>
        </rect>
       </property>
@@ -83,7 +83,7 @@
      <widget class="QPushButton" name="button_send_ch1_1">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>200</x>
         <y>40</y>
         <width>71</width>
         <height>27</height>
@@ -96,7 +96,7 @@
      <widget class="QPushButton" name="button_send_ch1_2">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>200</x>
         <y>90</y>
         <width>71</width>
         <height>27</height>
@@ -109,7 +109,7 @@
      <widget class="QPushButton" name="button_send_ch1_3">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>200</x>
         <y>140</y>
         <width>71</width>
         <height>27</height>
@@ -122,7 +122,7 @@
      <widget class="QPushButton" name="button_send_ch1_4">
       <property name="geometry">
        <rect>
-        <x>140</x>
+        <x>200</x>
         <y>190</y>
         <width>71</width>
         <height>27</height>
@@ -135,59 +135,59 @@
      <widget class="QCheckBox" name="checkbox_ch1_1">
       <property name="geometry">
        <rect>
-        <x>230</x>
+        <x>290</x>
         <y>40</y>
         <width>98</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
-       <string>Cyclic</string>
+       <string>Cyclic/ms</string>
       </property>
      </widget>
      <widget class="QCheckBox" name="checkbox_ch1_2">
       <property name="geometry">
        <rect>
-        <x>230</x>
+        <x>290</x>
         <y>90</y>
         <width>98</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
-       <string>Cyclic</string>
+       <string>Cyclic/ms</string>
       </property>
      </widget>
      <widget class="QCheckBox" name="checkbox_ch1_3">
       <property name="geometry">
        <rect>
-        <x>230</x>
+        <x>290</x>
         <y>140</y>
         <width>98</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
-       <string>Cyclic</string>
+       <string>Cyclic/ms</string>
       </property>
      </widget>
      <widget class="QCheckBox" name="checkbox_ch1_4">
       <property name="geometry">
        <rect>
-        <x>230</x>
+        <x>290</x>
         <y>190</y>
         <width>98</width>
         <height>25</height>
        </rect>
       </property>
       <property name="text">
-       <string>Cyclic</string>
+       <string>Cyclic/ms</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="cycletime_ch1_1">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>390</x>
         <y>40</y>
         <width>51</width>
         <height>27</height>
@@ -197,7 +197,7 @@
      <widget class="QLineEdit" name="cycletime_ch1_2">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>390</x>
         <y>90</y>
         <width>51</width>
         <height>27</height>
@@ -207,7 +207,7 @@
      <widget class="QLineEdit" name="cycletime_ch1_3">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>390</x>
         <y>140</y>
         <width>51</width>
         <height>27</height>
@@ -217,50 +217,10 @@
      <widget class="QLineEdit" name="cycletime_ch1_4">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>390</x>
         <y>190</y>
         <width>51</width>
         <height>27</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="datafield_ch1_1">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>40</y>
-        <width>261</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="datafield_ch1_2">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>90</y>
-        <width>261</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="datafield_ch1_3">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>140</y>
-        <width>261</width>
-        <height>31</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="datafield_ch1_4">
-      <property name="geometry">
-       <rect>
-        <x>420</x>
-        <y>190</y>
-        <width>261</width>
-        <height>31</height>
        </rect>
       </property>
      </widget>
@@ -280,14 +240,110 @@
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>500</x>
+        <x>480</x>
         <y>10</y>
-        <width>72</width>
+        <width>141</width>
         <height>19</height>
        </rect>
       </property>
       <property name="text">
-       <string>datafiled</string>
+       <string>DatafiledOverview</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_ch1_5">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>240</y>
+        <width>171</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_send_ch1_5">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>240</y>
+        <width>71</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>send</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkbox_ch1_5">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>240</y>
+        <width>98</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Cyclic/ms</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="cycletime_ch1_5">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>240</y>
+        <width>51</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="datafield_overview_ch1_1">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>40</y>
+        <width>191</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="datafield_overview_ch1_2">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>90</y>
+        <width>191</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="datafield_overview_ch1_3">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>140</y>
+        <width>191</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="datafield_overview_ch1_4">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>190</y>
+        <width>191</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="datafield_overview_ch1_5">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>240</y>
+        <width>191</width>
+        <height>31</height>
+       </rect>
       </property>
      </widget>
     </widget>
@@ -481,10 +537,10 @@
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="datafiled_refresh">
     <property name="geometry">
      <rect>
-      <x>770</x>
+      <x>750</x>
       <y>490</y>
       <width>94</width>
       <height>31</height>
@@ -494,12 +550,12 @@
      <string>save</string>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="refreshmsg">
+   <widget class="QTextBrowser" name="refresh_diag">
     <property name="geometry">
      <rect>
-      <x>870</x>
+      <x>860</x>
       <y>490</y>
-      <width>151</width>
+      <width>161</width>
       <height>31</height>
      </rect>
     </property>
@@ -573,10 +629,95 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>comboBox_ch1_1</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>msg_select_action_ch1_1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>61</x>
+     <y>234</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>44</x>
+     <y>545</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_ch1_2</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>msg_select_action_ch1_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>136</x>
+     <y>287</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>40</x>
+     <y>598</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_ch1_3</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>msg_select_action_ch1_3()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>115</x>
+     <y>344</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>43</x>
+     <y>638</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_ch1_4</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>msg_select_action_ch1_4()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>159</x>
+     <y>391</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>45</x>
+     <y>675</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_ch1_5</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>msg_select_action_ch1_5()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>166</x>
+     <y>441</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>11</x>
+     <y>711</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>Action()</slot>
   <slot>button_action_dbc1()</slot>
   <slot>button_action_dbc2()</slot>
+  <slot>msg_select_action_ch1_1()</slot>
+  <slot>msg_select_action_ch1_2()</slot>
+  <slot>msg_select_action_ch1_3()</slot>
+  <slot>msg_select_action_ch1_4()</slot>
+  <slot>msg_select_action_ch1_5()</slot>
  </slots>
 </ui>

@@ -14,6 +14,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         super(mywindow,self).__init__()
         self.setupUi(self)
 
+
     #定义槽函数
     def Action(self):
         print('button is clicked !')
@@ -28,11 +29,13 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         try:
             db1 = cantools.database.load_file(dbc_filepath1) #对dbc进行解析
+            self.db1 = db1
             msglist_1 = dbc_msg_list(db1)
             self.comboBox_ch1_1.addItems(msglist_1);self.comboBox_ch1_1.setCurrentIndex(-1)
             self.comboBox_ch1_2.addItems(msglist_1);self.comboBox_ch1_2.setCurrentIndex(-1)
             self.comboBox_ch1_3.addItems(msglist_1);self.comboBox_ch1_3.setCurrentIndex(-1)
             self.comboBox_ch1_4.addItems(msglist_1);self.comboBox_ch1_4.setCurrentIndex(-1)
+            self.comboBox_ch1_5.addItems(msglist_1);self.comboBox_ch1_5.setCurrentIndex(-1)
             
         except:
             self.text_dbc1.setText('file fromat error, plz select again') #获取到的绝对路径显示在路径框中
@@ -53,6 +56,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         try:
             db2 = cantools.database.load_file(dbc_filepath2) #对dbc进行解析
+            self.db2 = db2
             msglist_2 = dbc_msg_list(db2)
             
         except:
@@ -61,3 +65,33 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             self.flag_OK2.setText('dbc loaded!')        
         
+
+
+    def msg_select_action_ch1_1(self):
+        selected_msgname = self.comboBox_ch1_1.currentText()
+        selected_msg = self.db1.get_message_by_name(selected_msgname)
+        #cycle time 更新显示
+        try:
+            cycletime = str(selected_msg.cycle_time)
+        except:
+            cycletime = '0'
+        self.cycletime_ch1_1.setText(cycletime)
+        
+
+        self.signal_edit_window.clear()
+        try:  
+            for i in range(len(selected_msg.signals)):
+                #print("\"%s\"" % selected_msg.signals[i].name + " : "+"0"+" , ")
+                self.signal_edit_window.appendPlainText("\"%s\"" % selected_msg.signals[i].name + " : "+"0"+" , ")
+        except:
+            pass
+
+
+    def msg_select_action_ch1_2(self):
+        pass
+    def msg_select_action_ch1_3(self):
+        pass
+    def msg_select_action_ch1_4(self):
+        pass
+    def msg_select_action_ch1_5(self):
+        pass
