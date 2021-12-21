@@ -771,7 +771,7 @@
      <rect>
       <x>530</x>
       <y>570</y>
-      <width>511</width>
+      <width>71</width>
       <height>221</height>
      </rect>
     </property>
@@ -905,7 +905,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>136</x>
-     <y>287</y>
+     <y>267</y>
     </hint>
     <hint type="destinationlabel">
      <x>40</x>
@@ -921,7 +921,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>115</x>
-     <y>344</y>
+     <y>314</y>
     </hint>
     <hint type="destinationlabel">
      <x>43</x>
@@ -937,7 +937,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>159</x>
-     <y>391</y>
+     <y>351</y>
     </hint>
     <hint type="destinationlabel">
      <x>45</x>
@@ -953,7 +953,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>166</x>
-     <y>441</y>
+     <y>391</y>
     </hint>
     <hint type="destinationlabel">
      <x>11</x>
@@ -1001,7 +1001,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>720</x>
-     <y>347</y>
+     <y>317</y>
     </hint>
     <hint type="destinationlabel">
      <x>608</x>
@@ -1017,7 +1017,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>710</x>
-     <y>396</y>
+     <y>356</y>
     </hint>
     <hint type="destinationlabel">
      <x>532</x>
@@ -1033,11 +1033,171 @@
    <hints>
     <hint type="sourcelabel">
      <x>702</x>
-     <y>435</y>
+     <y>385</y>
     </hint>
     <hint type="destinationlabel">
      <x>600</x>
      <y>740</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_send_ch1_1</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>send_action_once_ch1_1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>277</x>
+     <y>224</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>808</x>
+     <y>576</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkbox_ch1_1</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>send_action_cyclic_ch1_1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>368</x>
+     <y>225</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>809</x>
+     <y>560</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_send_ch1_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>send_action_once_ch1_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>260</x>
+     <y>266</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>804</x>
+     <y>609</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkbox_ch1_2</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>send_action_cyclic_ch1_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>349</x>
+     <y>262</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>818</x>
+     <y>627</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_send_ch1_3</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>send_action_once_ch1_3()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>296</x>
+     <y>303</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>797</x>
+     <y>656</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkbox_ch1_3</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>send_action_cyclic_ch1_3()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>377</x>
+     <y>304</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>830</x>
+     <y>670</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_send_ch1_4</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>send_action_once_ch1_4()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>290</x>
+     <y>348</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>789</x>
+     <y>687</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkbox_ch1_4</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>send_action_cyclic_ch1_4()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>395</x>
+     <y>349</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>814</x>
+     <y>707</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>button_send_ch1_5</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>send_action_once_ch1_5()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>384</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>789</x>
+     <y>732</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkbox_ch1_5</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>send_action_cyclic_ch1_5()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>338</x>
+     <y>388</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>851</x>
+     <y>755</y>
     </hint>
    </hints>
   </connection>
@@ -1056,5 +1216,15 @@
   <slot>msg_encode_action_ch1_3()</slot>
   <slot>msg_encode_action_ch1_4()</slot>
   <slot>msg_encode_action_ch1_5()</slot>
+  <slot>send_action_cyclic_ch1_1()</slot>
+  <slot>send_action_cyclic_ch1_2()</slot>
+  <slot>send_action_cyclic_ch1_3()</slot>
+  <slot>send_action_cyclic_ch1_4()</slot>
+  <slot>send_action_cyclic_ch1_5()</slot>
+  <slot>send_action_once_ch1_1()</slot>
+  <slot>send_action_once_ch1_2()</slot>
+  <slot>send_action_once_ch1_3()</slot>
+  <slot>send_action_once_ch1_4()</slot>
+  <slot>send_action_once_ch1_5()</slot>
  </slots>
 </ui>

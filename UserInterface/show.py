@@ -16,8 +16,7 @@ import cantools
 from ui_handler import mywindow
 
 import time
-import logging
-
+now = time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime()) + " : "
 
 if __name__ == '__main__':
 

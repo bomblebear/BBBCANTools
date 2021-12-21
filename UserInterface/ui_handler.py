@@ -8,6 +8,7 @@ from dbc_handler import *
 import can
 import cantools
 
+
 class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
     
     def __init__(self):
@@ -42,8 +43,10 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         except:
             self.text_dbc1.setText('file fromat error, plz select again') #获取到的绝对路径显示在路径框中
             self.flag_OK1.setText('Error!')
+            self.terminal.append( '[error] dbc1 file format error, please select again')
         else:
             self.flag_OK1.setText('dbc loaded!')
+            self.terminal.append('[info] dbc1 loaded')
 
 
 
@@ -64,8 +67,10 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         except:
             self.text_dbc2.setText('file fromat error, plz select again') #获取到的绝对路径显示在路径框中
             self.flag_OK2.setText('Error!')
+            self.terminal.append( now + 'dbc2 file format error, please select again')
         else:
-            self.flag_OK2.setText('dbc loaded!')        
+            self.flag_OK2.setText('dbc loaded!')
+            self.terminal.append(now + 'dbc1 loaded')        
         
 
 
@@ -129,7 +134,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
             for key in decoded_dict.keys():
                 self.signal_edit_window.appendPlainText(key+" : "+str(decoded_dict[key]))
             flag = 1
-            self.terminal.append('Editing in ch1')
+            self.terminal.append('[info] Editing in ch1')
             self.editflag_ch1 = 1
 
         if text == 'Save':
@@ -145,16 +150,18 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 #print(self.packedmsg_ch1_1.hex('-'))
                 self.datafield_overview_ch1_1.setText(str(self.packedmsg_ch1_1.hex('-')))                #打包好的报文显示
             except:
-                self.terminal.append('Error in encode in ch1, try again!')
+                self.terminal.append('[error] Error in encode in ch1, try again!')
             else:
-                self.terminal.append('Encode completely in ch1')
+                self.terminal.append('[info] Encode completely in ch1')
                 self.editflag_ch1 = 0
                 flag = 2
         
         if flag == 1:
             self.datafiled_refresh_save_ch1_1.setText('Save')
+            self.datafiled_refresh_save_ch1_1.setStyleSheet("color: red")
         elif flag == 2:
             self.datafiled_refresh_save_ch1_1.setText('Edit')
+            self.datafiled_refresh_save_ch1_1.setStyleSheet("color: balck")
         flag = 0
         
 
@@ -171,7 +178,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
             for key in decoded_dict.keys():
                 self.signal_edit_window.appendPlainText(key+" : "+str(decoded_dict[key]))
             flag = 1
-            self.terminal.append('Editing in ch1')
+            self.terminal.append('[info] Editing in ch1')
             self.editflag_ch1 = 1
 
         if text == 'Save':
@@ -187,16 +194,18 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 #print(self.packedmsg_ch1_1.hex('-'))
                 self.datafield_overview_ch1_2.setText(str(self.packedmsg_ch1_2.hex('-')))                        #打包好的报文显示
             except:
-                self.terminal.append('Error in encode in ch1, try again!')
+                self.terminal.append('[error] Error in encode in ch1, try again!')
             else:
-                self.terminal.append('Encode completely in ch1')
+                self.terminal.append('[info] Encode completely in ch1')
                 self.editflag_ch1 = 0
                 flag = 2
         
         if flag == 1:
             self.datafiled_refresh_save_ch1_2.setText('Save')
+            self.datafiled_refresh_save_ch1_2.setStyleSheet("color: red")
         elif flag == 2:
             self.datafiled_refresh_save_ch1_2.setText('Edit')
+            self.datafiled_refresh_save_ch1_2.setStyleSheet("color: balck")
         flag = 0
 
     def msg_encode_action_ch1_3(self):
@@ -208,4 +217,69 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def msg_encode_action_ch1_5(self):
         pass
 
+    #-------------------------------------------------#
+    #------------------发送一次按钮---------------------#
+    #-------------------------------------------------#
 
+    def send_action_once_ch1_1(self):
+        
+        if not self.checkbox_ch1_1.isChecked():
+            try:
+                selected_msgname = self.comboBox_ch1_1.currentText()               #获取当前选中的message
+                selected_msg = self.db1.get_message_by_name(selected_msgname)
+                self.terminal.append('[info] send once '+ str(hex(selected_msg.frame_id)) + " "+ str(self.packedmsg_ch1_1.hex('-')) )
+            except:
+                self.terminal.append('[error] please verify the data you want to send!')
+        else:
+            self.terminal.append('[warning] cannot send once when this message sending cyclicly!')
+        
+    def send_action_once_ch1_2(self):
+        if not self.checkbox_ch1_2.isChecked():
+            try:
+                selected_msgname = self.comboBox_ch1_2.currentText()               #获取当前选中的message
+                selected_msg = self.db1.get_message_by_name(selected_msgname)
+                self.terminal.append(' send once '+ str(hex(selected_msg.frame_id)) + " "+ str(self.packedmsg_ch1_2.hex('-')) )
+            except:
+                self.terminal.append('[error] please verify the data you want to send!')
+        else:
+            self.terminal.append('[warning] cannot send once when this message sending cyclicly!')
+
+    def send_action_once_ch1_3(self):
+        pass
+
+    def send_action_once_ch1_4(self):
+        pass
+    def send_action_once_ch1_5(self):
+        pass
+
+
+    #-------------------------------------------------#
+    #------------------持续发送按钮---------------------#
+    #-------------------------------------------------#
+    def send_action_cyclic_ch1_1(self):
+        if self.checkbox_ch1_1.isChecked():
+            try:
+                selected_msgname = self.comboBox_ch1_1.currentText()               #获取当前选中的message
+                selected_msg = self.db1.get_message_by_name(selected_msgname)
+                self.terminal.append('[info] send cyclic '+ str(hex(selected_msg.frame_id)) + " "+ str(self.packedmsg_ch1_1.hex('-')) )
+            except:
+                self.terminal.append('[error] please verify the data you want to send!')
+        else:
+            self.terminal.append('[info] stop send cyclic message now')
+
+    def send_action_cyclic_ch1_2(self):
+        if self.checkbox_ch1_2.isChecked():
+            try:
+                selected_msgname = self.comboBox_ch1_2.currentText()               #获取当前选中的message
+                selected_msg = self.db1.get_message_by_name(selected_msgname)
+                self.terminal.append('[info] send cyclic '+ str(hex(selected_msg.frame_id)) + " "+ str(self.packedmsg_ch1_2.hex('-')) )
+            except:
+                self.terminal.append('[error] please verify the data you want to send!')
+        else:
+            self.terminal.append('[info] stop send cyclic message now')
+    def send_action_cyclic_ch1_3(self):
+        pass
+    def send_action_cyclic_ch1_4(self):
+        pass
+    def send_action_cyclic_ch1_5(self):
+        pass
