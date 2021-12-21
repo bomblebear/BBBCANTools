@@ -14,16 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPlainTextEdit" name="signal_edit_window">
-    <property name="geometry">
-     <rect>
-      <x>760</x>
-      <y>170</y>
-      <width>331</width>
-      <height>361</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
@@ -714,8 +704,8 @@
      <rect>
       <x>860</x>
       <y>10</y>
-      <width>171</width>
-      <height>131</height>
+      <width>161</width>
+      <height>121</height>
      </rect>
     </property>
     <property name="title">
@@ -726,8 +716,8 @@
       <rect>
        <x>40</x>
        <y>30</y>
-       <width>101</width>
-       <height>41</height>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="text">
@@ -742,8 +732,8 @@
       <rect>
        <x>40</x>
        <y>80</y>
-       <width>101</width>
-       <height>41</height>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -771,7 +761,7 @@
      <rect>
       <x>580</x>
       <y>570</y>
-      <width>71</width>
+      <width>181</width>
       <height>221</height>
      </rect>
     </property>
@@ -810,6 +800,29 @@
     </property>
     <property name="text">
      <string>Received Msgs</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="signal_edit_window">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>170</y>
+      <width>341</width>
+      <height>351</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>150</y>
+      <width>281</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CRC will be calculated automaticlly</string>
     </property>
    </widget>
   </widget>
