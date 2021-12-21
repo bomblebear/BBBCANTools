@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1058</width>
+    <width>1119</width>
     <height>823</height>
    </rect>
   </property>
@@ -19,7 +19,7 @@
      <rect>
       <x>760</x>
       <y>170</y>
-      <width>281</width>
+      <width>331</width>
       <height>361</height>
      </rect>
     </property>
@@ -229,12 +229,12 @@
        <rect>
         <x>20</x>
         <y>10</y>
-        <width>101</width>
+        <width>131</width>
         <height>19</height>
        </rect>
       </property>
       <property name="text">
-       <string>MsgName/ID</string>
+       <string>DBC MsgName</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_2">
@@ -712,7 +712,7 @@
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>860</x>
       <y>10</y>
       <width>171</width>
       <height>131</height>
@@ -769,7 +769,7 @@
    <widget class="QTextBrowser" name="refresh_diag">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>580</x>
       <y>570</y>
       <width>71</width>
       <height>221</height>
@@ -781,7 +781,7 @@
      <rect>
       <x>30</x>
       <y>570</y>
-      <width>481</width>
+      <width>511</width>
       <height>221</height>
      </rect>
     </property>
@@ -802,7 +802,7 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>580</x>
       <y>540</y>
       <width>111</width>
       <height>19</height>

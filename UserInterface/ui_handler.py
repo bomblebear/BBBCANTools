@@ -227,7 +227,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 selected_msgname = self.comboBox_ch1_1.currentText()               #获取当前选中的message
                 selected_msg = self.db1.get_message_by_name(selected_msgname)
-                self.terminal.append('[info] send once '+ str(hex(selected_msg.frame_id)) + " "+ str(self.packedmsg_ch1_1.hex('-')) )
+                self.terminal.append('[info] send once '+ str(hex(selected_msg.frame_id)) +"  "+  str(self.packedmsg_ch1_1.hex('-')) )
             except:
                 self.terminal.append('[error] please verify the data you want to send!')
         else:
@@ -238,7 +238,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 selected_msgname = self.comboBox_ch1_2.currentText()               #获取当前选中的message
                 selected_msg = self.db1.get_message_by_name(selected_msgname)
-                self.terminal.append(' send once '+ str(hex(selected_msg.frame_id)) + " "+ str(self.packedmsg_ch1_2.hex('-')) )
+                self.terminal.append('[info] send once '+ str(hex(selected_msg.frame_id)) +"  "+ str(self.packedmsg_ch1_2.hex('-')) )
             except:
                 self.terminal.append('[error] please verify the data you want to send!')
         else:
@@ -261,7 +261,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 selected_msgname = self.comboBox_ch1_1.currentText()               #获取当前选中的message
                 selected_msg = self.db1.get_message_by_name(selected_msgname)
-                self.terminal.append('[info] send cyclic '+ str(hex(selected_msg.frame_id)) + " "+ str(self.packedmsg_ch1_1.hex('-')) )
+                self.terminal.append('[info] send cyclic '+ str(hex(selected_msg.frame_id)) +" "+ self.cycletime_ch1_1.text()+"ms  "+  str(self.packedmsg_ch1_1.hex('-')) )
             except:
                 self.terminal.append('[error] please verify the data you want to send!')
         else:
@@ -272,7 +272,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 selected_msgname = self.comboBox_ch1_2.currentText()               #获取当前选中的message
                 selected_msg = self.db1.get_message_by_name(selected_msgname)
-                self.terminal.append('[info] send cyclic '+ str(hex(selected_msg.frame_id)) + " "+ str(self.packedmsg_ch1_2.hex('-')) )
+                self.terminal.append('[info] send cyclic '+ str(hex(selected_msg.frame_id)) +" "+ self.cycletime_ch1_2.text()+"ms  "+  str(self.packedmsg_ch1_2.hex('-')) )
             except:
                 self.terminal.append('[error] please verify the data you want to send!')
         else:
