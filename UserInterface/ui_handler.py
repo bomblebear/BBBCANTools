@@ -82,10 +82,12 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         except:
             cycletime = '0'
         self.cycletime_ch1_1.setText(cycletime)
-        
-        self.signal_edit_window.clear()
+        self.datafiled_refresh_save_ch1_1.setText('Edit')  #切换message的时候，重新开启编辑
+        #self.signal_edit_window.clear()                    #清空右侧栏
 
         self.packedmsg_ch1_1 = b'\x00\x00\x00\x00\x00\x00\x00\x00'
+        self.editflag_ch1 = 0  # 1表示有人正在编辑状态，还未保存
+        
         
 
     def msg_select_action_ch1_2(self):
@@ -97,8 +99,8 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         except:
             cycletime = '0'
         self.cycletime_ch1_2.setText(cycletime)
-        
-        self.signal_edit_window.clear()
+        self.datafiled_refresh_save_ch1_2.setText('Edit')
+        #self.signal_edit_window.clear()
 
         self.packedmsg_ch1_2 = b'\x00\x00\x00\x00\x00\x00\x00\x00'
 
@@ -121,13 +123,14 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         text = self.datafiled_refresh_save_ch1_1.text()
         flag = 0
 
-        if text == 'Edit':
+        if text == 'Edit'and self.editflag_ch1 == 0: #如果有其他栏正在编辑，不能进入
             self.signal_edit_window.clear()  #先清空屏幕
             decoded_dict = self.db1.decode_message(selected_msg.frame_id, self.packedmsg_ch1_1,decode_choices=False)
             for key in decoded_dict.keys():
                 self.signal_edit_window.appendPlainText(key+" : "+str(decoded_dict[key]))
             flag = 1
-            self.refresh_diag.setText('Editing')
+            self.terminal.append('Editing in ch1')
+            self.editflag_ch1 = 1
 
         if text == 'Save':
             tt = self.signal_edit_window.toPlainText().split('\n')
@@ -142,9 +145,10 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 #print(self.packedmsg_ch1_1.hex('-'))
                 self.datafield_overview_ch1_1.setText(str(self.packedmsg_ch1_1.hex('-')))                #打包好的报文显示
             except:
-                self.refresh_diag.setText('Error in encode, try again!')
+                self.terminal.append('Error in encode in ch1, try again!')
             else:
-                self.refresh_diag.setText('Encode completely')
+                self.terminal.append('Encode completely in ch1')
+                self.editflag_ch1 = 0
                 flag = 2
         
         if flag == 1:
@@ -161,13 +165,14 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
         text = self.datafiled_refresh_save_ch1_2.text()
         flag = 0
 
-        if text == 'Edit':
+        if text == 'Edit'and self.editflag_ch1 == 0: #如果有其他栏正在编辑，不能进入
             self.signal_edit_window.clear()  #先清空屏幕
             decoded_dict = self.db1.decode_message(selected_msg.frame_id, self.packedmsg_ch1_2,decode_choices=False)
             for key in decoded_dict.keys():
                 self.signal_edit_window.appendPlainText(key+" : "+str(decoded_dict[key]))
             flag = 1
-            self.refresh_diag.setText('Editing')
+            self.terminal.append('Editing in ch1')
+            self.editflag_ch1 = 1
 
         if text == 'Save':
             tt = self.signal_edit_window.toPlainText().split('\n')
@@ -182,9 +187,10 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 #print(self.packedmsg_ch1_1.hex('-'))
                 self.datafield_overview_ch1_2.setText(str(self.packedmsg_ch1_2.hex('-')))                        #打包好的报文显示
             except:
-                self.refresh_diag.setText('Error in encode, try again!')
+                self.terminal.append('Error in encode in ch1, try again!')
             else:
-                self.refresh_diag.setText('Encode completely')
+                self.terminal.append('Encode completely in ch1')
+                self.editflag_ch1 = 0
                 flag = 2
         
         if flag == 1:
