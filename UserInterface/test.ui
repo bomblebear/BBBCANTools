@@ -356,7 +356,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>save</string>
+       <string>Edit</string>
       </property>
      </widget>
      <widget class="QPushButton" name="datafiled_refresh_save_ch1_2">
@@ -369,7 +369,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>save</string>
+       <string>Edit</string>
       </property>
      </widget>
      <widget class="QPushButton" name="datafiled_refresh_save_ch1_3">
@@ -382,7 +382,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>save</string>
+       <string>Edit</string>
       </property>
      </widget>
      <widget class="QPushButton" name="datafiled_refresh_save_ch1_4">
@@ -395,7 +395,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>save</string>
+       <string>Edit</string>
       </property>
      </widget>
      <widget class="QPushButton" name="datafiled_refresh_save_ch1_5">
@@ -408,7 +408,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>save</string>
+       <string>Edit</string>
       </property>
      </widget>
     </widget>

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#coding=utf-8
 #更新一次UI文件
 from os import system
 system('pyuic5 test.ui -o ./Ui_test.py')
