@@ -26,57 +26,10 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
     #------------------dbc 获取------------------------#
     #-------------------------------------------------#
     def button_action_dbc1(self):
-        self.flag_OK1.setText('None!')
-        try:
-            dbc_filepath1 = dbcfile_acquire() 
-            self.text_dbc1.setText(dbc_filepath1) #获取到的绝对路径显示在路径框中
-        except:
-            return 0 #对话框如果意外终止，直接退出
+        button_action.button_action_dbc(self, "1")
 
-        try:
-            self.db1 = cantools.database.load_file(dbc_filepath1) #对dbc进行解析
-            msglist = dbc_msg_list(self.db1)
-            self.comboBox_ch1_1.addItems(msglist);self.comboBox_ch1_1.setCurrentIndex(-1)
-            self.comboBox_ch1_2.addItems(msglist);self.comboBox_ch1_2.setCurrentIndex(-1)
-            self.comboBox_ch1_3.addItems(msglist);self.comboBox_ch1_3.setCurrentIndex(-1)
-            self.comboBox_ch1_4.addItems(msglist);self.comboBox_ch1_4.setCurrentIndex(-1)
-            self.comboBox_ch1_5.addItems(msglist);self.comboBox_ch1_5.setCurrentIndex(-1)
-            
-        except:
-            self.text_dbc1.setText('file fromat error, plz select again') #获取到的绝对路径显示在路径框中
-            self.flag_OK1.setText('Error!')
-            self.terminal.append( '[error] [ch1] dbc1 file format error, please select again')
-        else:
-            self.flag_OK1.setText('dbc loaded!')
-            self.terminal.append('[info] [ch1] dbc1 loaded')
-
-
-
-    #channel 2
     def button_action_dbc2(self):
-        self.flag_OK2.setText('None!')
-        try:
-            dbc_filepath2 = dbcfile_acquire() 
-            self.text_dbc2.setText(dbc_filepath2) #获取到的绝对路径显示在路径框中
-        except:
-            return 0 #对话框如果意外终止，直接退出
-
-        try:
-            self.db2 = cantools.database.load_file(dbc_filepath2) #对dbc进行解析
-            msglist = dbc_msg_list(self.db2)
-            self.comboBox_ch2_1.addItems(msglist);self.comboBox_ch2_1.setCurrentIndex(-1)
-            self.comboBox_ch2_2.addItems(msglist);self.comboBox_ch2_2.setCurrentIndex(-1)
-            self.comboBox_ch2_3.addItems(msglist);self.comboBox_ch2_3.setCurrentIndex(-1)
-            self.comboBox_ch2_4.addItems(msglist);self.comboBox_ch2_4.setCurrentIndex(-1)
-            self.comboBox_ch2_5.addItems(msglist);self.comboBox_ch2_5.setCurrentIndex(-1)
-            
-        except:
-            self.text_dbc2.setText('file fromat error, plz select again') #获取到的绝对路径显示在路径框中
-            self.flag_OK2.setText('Error!')
-            self.terminal.append( '[error] [ch2] dbc2 file format error, please select again')
-        else:
-            self.flag_OK2.setText('dbc loaded!')
-            self.terminal.append('[info] [ch2] dbc2 loaded')   
+        button_action.button_action_dbc(self, "2")
         
 
 

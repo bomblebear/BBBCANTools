@@ -2,6 +2,48 @@ from typing import ChainMap, get_args
 from PyQt5 import QtCore, QtGui, QtWidgets
 import can
 import cantools
+from dbc_handler import dbcfile_acquire,dbc_msg_list
+
+#-------------------------------------------------#
+#-------------------dbc获取函数--------------------#
+#-------------------------------------------------#
+def button_action_dbc(mywindow, channelnum):
+    flag_OK_attr = getattr(mywindow, "flag_OK"+channelnum, None)
+    flag_OK_attr.setText('None!')
+    
+    try:
+        dbc_filepath = dbcfile_acquire()  #对话框获取路径
+
+        text_dbc_attr = getattr(mywindow, "text_dbc"+channelnum, None)
+        text_dbc_attr.setText(dbc_filepath)     #获取到的绝对路径显示在路径框中
+
+    except:
+        return 0 #对话框如果意外终止，直接退出函数
+
+    try:
+        setattr(mywindow, "db"+channelnum, cantools.database.load_file(dbc_filepath))   #对dbc进行解析
+        
+        msglist = dbc_msg_list(cantools.database.load_file(dbc_filepath))
+        #range(5), 0,1,2,3,4        
+        for i in range(5):
+            
+            comboBox_attr = getattr(mywindow, "comboBox_ch"+channelnum+"_"+str(i+1), None)
+            comboBox_attr.clear()            #清空下拉框
+            comboBox_attr.addItems(msglist)  #加入msg列表
+            comboBox_attr.setCurrentIndex(-1) #设置当前无目标被选中
+            
+            cycletime_attr = getattr(mywindow,"cycletime_ch"+channelnum+"_"+str(i+1),None)
+            cycletime_attr.setText("")
+
+    except:
+        text_dbc_attr.setText('file fromat error, plz select again') #获取到的绝对路径显示在路径框中
+        flag_OK_attr.setText('Error!')
+        mywindow.terminal.append( '[error] [ch'+channelnum+'] dbc file format error, please select again')
+    else:
+        flag_OK_attr.setText('dbc loaded!')
+        mywindow.terminal.append('[info] [ch'+channelnum+'] dbc loaded')
+
+
 
 
 #-------------------------------------------------#
@@ -99,6 +141,8 @@ def msg_encode_action(mywindow,channel):
     elif flag == 2:
         datafiled_refresh_save_attr.setText('Edit')
         datafiled_refresh_save_attr.setStyleSheet("color: black")
+        send_action_cyclic(mywindow, channel)    #如果此时报文正在发送，而且成功修改了一次报文内容，需要将报文内容更新发送至总线
+        mywindow.edit_and_send_flag = 1
     flag = 0
     
 
@@ -146,8 +190,10 @@ def send_action_cyclic(mywindow,channel):
             mywindow.terminal.append('[info] ['+ canchannel +'] send cyclic '+ str(hex(selected_msg.frame_id)) +" "+ cycletime_attr.text()+"ms  "+  str(getattr(mywindow, "packedmsg_"+channel).hex('-')) )
         except:
             mywindow.terminal.append('[error] ['+ canchannel +'] please verify the data you want to send!')
-    else:
+    elif mywindow.edit_and_send_flag == 0:
         mywindow.terminal.append('[info] ['+ canchannel +'] stop send cyclic message now')
+    else:
+        mywindow.edit_and_send_flag = 0
 
 
 
