@@ -65,7 +65,7 @@ def msg_encode_action(mywindow,channel):
         for key in decoded_dict.keys():
             mywindow.signal_edit_window.appendPlainText(key+" : "+str(decoded_dict[key]))
         flag = 1
-        mywindow.terminal.append('[info] Editing in ch1')
+        mywindow.terminal.append('[info] ['+ canchannel +'] Editing')
         
         setattr(mywindow,"editflag_"+canchannel,1)
 
@@ -85,9 +85,9 @@ def msg_encode_action(mywindow,channel):
             datafield_overview_attr.setText(str(getattr(mywindow, "packedmsg_"+channel).hex('-')))  #打包好的报文显示
             #mywindow.datafield_overview_ch1_1.setText(str(mywindow.packedmsg_ch1_1.hex('-')))        
         except:
-            mywindow.terminal.append('[error] Error in encode in ch1, try again!')
+            mywindow.terminal.append('[error] ['+ canchannel +'] Error in encode, try again!')
         else:
-            mywindow.terminal.append('[info] Encode completely in ch1')
+            mywindow.terminal.append('[info] ['+ canchannel +'] Encode completely')
             
             setattr(mywindow,"editflag_"+canchannel, 0)
             
@@ -119,11 +119,11 @@ def send_action_once(mywindow,channel):
             else:
                 selected_msg = mywindow.db2.get_message_by_name(selected_msgname)
 
-            mywindow.terminal.append('[info] send once '+ str(hex(selected_msg.frame_id)) +"  "+  str(getattr(mywindow, "packedmsg_"+channel).hex('-')) )
+            mywindow.terminal.append('[info] ['+ canchannel +'] send once '+ str(hex(selected_msg.frame_id)) +"  "+  str(getattr(mywindow, "packedmsg_"+channel).hex('-')) )
         except:
-            mywindow.terminal.append('[error] please verify the data you want to send!')
+            mywindow.terminal.append('[error] ['+ canchannel +'] please verify the data you want to send!')
     else:
-        mywindow.terminal.append('[warning] cannot send once when this message sending cyclicly!')
+        mywindow.terminal.append('[warning] ['+ canchannel +'] cannot send once when this message sending cyclicly!')
 
 
 #-------------------------------------------------#
@@ -143,11 +143,11 @@ def send_action_cyclic(mywindow,channel):
             else:
                 selected_msg = mywindow.db2.get_message_by_name(selected_msgname)
             
-            mywindow.terminal.append('[info] send cyclic '+ str(hex(selected_msg.frame_id)) +" "+ cycletime_attr.text()+"ms  "+  str(getattr(mywindow, "packedmsg_"+channel).hex('-')) )
+            mywindow.terminal.append('[info] ['+ canchannel +'] send cyclic '+ str(hex(selected_msg.frame_id)) +" "+ cycletime_attr.text()+"ms  "+  str(getattr(mywindow, "packedmsg_"+channel).hex('-')) )
         except:
-            mywindow.terminal.append('[error] please verify the data you want to send!')
+            mywindow.terminal.append('[error] ['+ canchannel +'] please verify the data you want to send!')
     else:
-        mywindow.terminal.append('[info] stop send cyclic message now')
+        mywindow.terminal.append('[info] ['+ canchannel +'] stop send cyclic message now')
 
 
 
