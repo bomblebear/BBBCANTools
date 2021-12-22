@@ -7,7 +7,7 @@ def dbcfile_acquire():
     root = tk.Tk()
     root.withdraw()
 
-    folderpath = filedialog.askdirectory() #获得选择好的文件夹
+    #folderpath = filedialog.askdirectory() #获得选择好的文件夹
     filepath = filedialog.askopenfilename() #获得选择好的文件
 
     return filepath

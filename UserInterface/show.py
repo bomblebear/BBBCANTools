@@ -10,8 +10,6 @@ from Ui_test import Ui_BBBCAN_Tool
 
 #dbc file and process
 from dbc_handler import *
-import can
-import cantools
 
 from ui_handler import mywindow
 
@@ -31,5 +29,6 @@ if __name__ == '__main__':
     window.terminal.append("start at : " + time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime()))
     
     sys.exit(app.exec_())
+
 
 

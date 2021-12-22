@@ -26,11 +26,13 @@ def button_action_dbc(mywindow, channelnum):
         msglist = dbc_msg_list(cantools.database.load_file(dbc_filepath))
         #range(5), 0,1,2,3,4        
         for i in range(5):
-            
+
+                        
             comboBox_attr = getattr(mywindow, "comboBox_ch"+channelnum+"_"+str(i+1), None)
             comboBox_attr.clear()            #清空下拉框
-            comboBox_attr.addItems(msglist)  #加入msg列表
             comboBox_attr.setCurrentIndex(-1) #设置当前无目标被选中
+            comboBox_attr.addItems(msglist)  #加入msg列表
+
             
             cycletime_attr = getattr(mywindow,"cycletime_ch"+channelnum+"_"+str(i+1),None)
             cycletime_attr.setText("")
@@ -53,11 +55,10 @@ def msg_select_action(mywindow,channel):
     canchannel = channel[0:-2]
     comboBox_attr = getattr(mywindow, "comboBox_"+channel,None )
     selected_msgname = comboBox_attr.currentText()                         #获取当前选中的messgae
-    if canchannel == "ch1":
-        selected_msg = mywindow.db1.get_message_by_name(selected_msgname)
-    else:
-        selected_msg = mywindow.db2.get_message_by_name(selected_msgname)
-    
+
+    db_attr = getattr(mywindow, "db"+channel[2])
+    selected_msg = db_attr.get_message_by_name(selected_msgname)
+
     #cycle time 更新显示
     try:
         cycletime = str(selected_msg.cycle_time)
@@ -82,12 +83,10 @@ def msg_encode_action(mywindow,channel):
     canchannel = channel[0:-2]
     comboBox_attr = getattr(mywindow, "comboBox_"+channel,None )
     selected_msgname = comboBox_attr.currentText()                         #获取当前选中的messgae
-    if canchannel == "ch1":
-        selected_msg = mywindow.db1.get_message_by_name(selected_msgname)
-    else:
-        selected_msg = mywindow.db2.get_message_by_name(selected_msgname)
-    
 
+    db_attr = getattr(mywindow, "db"+channel[2])
+    selected_msg = db_attr.get_message_by_name(selected_msgname)
+    
     datafiled_refresh_save_attr = getattr(mywindow,"datafiled_refresh_save_"+channel,None)
     text = datafiled_refresh_save_attr.text()
     #text = mywindow.datafiled_refresh_save_ch1_1.text()
@@ -95,17 +94,17 @@ def msg_encode_action(mywindow,channel):
 
     if text == 'Edit'and getattr(mywindow,"editflag_"+canchannel,None) == 0: #如果有其他栏正在编辑，不能进入
         mywindow.signal_edit_window.clear()  #先清空屏幕
+        mywindow.signal_edit_window_2.clear()
 
         #decoded_dict = mywindow.db1.decode_message(selected_msg.frame_id, mywindow.packedmsg_ch1_1,decode_choices=False)
         
-        if canchannel == "ch1":
-            decoded_dict = mywindow.db1.decode_message(selected_msg.frame_id, getattr(mywindow,"packedmsg_"+channel),decode_choices=False)
-        if canchannel == "ch2":
-            decoded_dict = mywindow.db2.decode_message(selected_msg.frame_id, getattr(mywindow,"packedmsg_"+channel),decode_choices=False)
+        decoded_dict = db_attr.decode_message(selected_msg.frame_id, getattr(mywindow,"packedmsg_"+channel),decode_choices=False)
+        decoded_dict_2 = db_attr.decode_message(selected_msg.frame_id, getattr(mywindow,"packedmsg_"+channel),decode_choices=True)
 
         
         for key in decoded_dict.keys():
             mywindow.signal_edit_window.appendPlainText(key+" : "+str(decoded_dict[key]))
+            mywindow.signal_edit_window_2.appendPlainText(key+" : "+str(decoded_dict_2[key]))
         flag = 1
         mywindow.terminal.append('[info] ['+ canchannel +'] Editing')
         
@@ -158,10 +157,8 @@ def send_action_once(mywindow,channel):
         try:
             selected_msgname = comboBox_attr.currentText()               #获取当前选中的message
 
-            if canchannel == "ch1":
-                selected_msg = mywindow.db1.get_message_by_name(selected_msgname)
-            else:
-                selected_msg = mywindow.db2.get_message_by_name(selected_msgname)
+            db_attr = getattr(mywindow, "db"+channel[2])
+            selected_msg = db_attr.get_message_by_name(selected_msgname)
 
             mywindow.terminal.append('[info] ['+ canchannel +'] send once '+ str(hex(selected_msg.frame_id)) +"  "+  str(getattr(mywindow, "packedmsg_"+channel).hex('-')) )
         except:
@@ -179,20 +176,21 @@ def send_action_cyclic(mywindow,channel):
     comboBox_attr = getattr(mywindow, "comboBox_"+channel, None)
     cycletime_attr = getattr(mywindow, "cycletime_"+channel, None)
 
-    if checkbox_attr.isChecked():
-        try:
-            selected_msgname = comboBox_attr.currentText()               #获取当前选中的message
-            if canchannel == "ch1":
-                selected_msg = mywindow.db1.get_message_by_name(selected_msgname)
-            else:
-                selected_msg = mywindow.db2.get_message_by_name(selected_msgname)
-            
-            mywindow.terminal.append('[info] ['+ canchannel +'] send cyclic '+ str(hex(selected_msg.frame_id)) +" "+ cycletime_attr.text()+"ms  "+  str(getattr(mywindow, "packedmsg_"+channel).hex('-')) )
-        except:
-            mywindow.terminal.append('[error] ['+ canchannel +'] please verify the data you want to send!')
-    elif mywindow.edit_and_send_flag == 0:
-        mywindow.terminal.append('[info] ['+ canchannel +'] stop send cyclic message now')
-    else:
+    try:
+        if checkbox_attr.isChecked():
+            try:
+                selected_msgname = comboBox_attr.currentText()               #获取当前选中的message
+                db_attr = getattr(mywindow, "db"+channel[2])
+                selected_msg = db_attr.get_message_by_name(selected_msgname)
+                
+                mywindow.terminal.append('[info] ['+ canchannel +'] send cyclic '+ str(hex(selected_msg.frame_id)) +" "+ cycletime_attr.text()+"ms  "+  str(getattr(mywindow, "packedmsg_"+channel).hex('-')) )
+            except:
+                mywindow.terminal.append('[error] ['+ canchannel +'] please verify the data you want to send!')
+        elif mywindow.edit_and_send_flag == 0:
+            mywindow.terminal.append('[info] ['+ canchannel +'] stop send cyclic message now')
+        else:
+            mywindow.edit_and_send_flag = 0
+    except:
         mywindow.edit_and_send_flag = 0
 
 
