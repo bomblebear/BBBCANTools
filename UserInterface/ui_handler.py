@@ -1,7 +1,7 @@
 #pyqt5
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-from Ui_test import Ui_MainWindow
+from Ui_test import Ui_BBBCAN_Tool
 
 #dbc file and process
 from dbc_handler import *
@@ -12,7 +12,7 @@ import cantools
 import button_action
 
 
-class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
+class mywindow(QtWidgets.QMainWindow, Ui_BBBCAN_Tool):
     
     def __init__(self):
         super(mywindow,self).__init__()
@@ -31,8 +31,6 @@ class mywindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def button_action_dbc2(self):
         button_action.button_action_dbc(self, "2")
         
-
-
     #-------------------------------------------------#
     #-----------------下拉选择按钮响应-------------------#
     #-------------------------------------------------#

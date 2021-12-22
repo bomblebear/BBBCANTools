@@ -6,7 +6,7 @@ system('pyuic5 test.ui -o ./Ui_test.py')
 #pyqt5
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
-from Ui_test import Ui_MainWindow
+from Ui_test import Ui_BBBCAN_Tool
 
 #dbc file and process
 from dbc_handler import *

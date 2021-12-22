@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>BBBCAN_Tool</class>
+ <widget class="QMainWindow" name="BBBCAN_Tool">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1119</width>
-    <height>818</height>
+    <width>1123</width>
+    <height>832</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1368,7 +1368,7 @@
   <connection>
    <sender>closebutton</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1384,7 +1384,7 @@
   <connection>
    <sender>pushButton</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>Action()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1400,7 +1400,7 @@
   <connection>
    <sender>button_dbc1</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>button_action_dbc1()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1416,7 +1416,7 @@
   <connection>
    <sender>button_dbc2</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>button_action_dbc2()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1432,7 +1432,7 @@
   <connection>
    <sender>comboBox_ch1_1</sender>
    <signal>currentIndexChanged(QString)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_select_action_ch1_1()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1448,7 +1448,7 @@
   <connection>
    <sender>comboBox_ch1_2</sender>
    <signal>currentIndexChanged(QString)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_select_action_ch1_2()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1464,7 +1464,7 @@
   <connection>
    <sender>comboBox_ch1_3</sender>
    <signal>currentIndexChanged(QString)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_select_action_ch1_3()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1480,7 +1480,7 @@
   <connection>
    <sender>comboBox_ch1_4</sender>
    <signal>currentIndexChanged(QString)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_select_action_ch1_4()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1496,7 +1496,7 @@
   <connection>
    <sender>comboBox_ch1_5</sender>
    <signal>currentIndexChanged(QString)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_select_action_ch1_5()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1512,7 +1512,7 @@
   <connection>
    <sender>datafiled_refresh_save_ch1_1</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_encode_action_ch1_1()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1528,7 +1528,7 @@
   <connection>
    <sender>datafiled_refresh_save_ch1_2</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_encode_action_ch1_2()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1544,7 +1544,7 @@
   <connection>
    <sender>datafiled_refresh_save_ch1_3</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_encode_action_ch1_3()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1560,7 +1560,7 @@
   <connection>
    <sender>datafiled_refresh_save_ch1_4</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_encode_action_ch1_4()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1576,7 +1576,7 @@
   <connection>
    <sender>datafiled_refresh_save_ch1_5</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_encode_action_ch1_5()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1592,7 +1592,7 @@
   <connection>
    <sender>button_send_ch1_1</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_once_ch1_1()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1608,7 +1608,7 @@
   <connection>
    <sender>checkbox_ch1_1</sender>
    <signal>toggled(bool)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_cyclic_ch1_1()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1624,7 +1624,7 @@
   <connection>
    <sender>button_send_ch1_2</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_once_ch1_2()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1640,7 +1640,7 @@
   <connection>
    <sender>checkbox_ch1_2</sender>
    <signal>toggled(bool)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_cyclic_ch1_2()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1656,7 +1656,7 @@
   <connection>
    <sender>button_send_ch1_3</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_once_ch1_3()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1672,7 +1672,7 @@
   <connection>
    <sender>checkbox_ch1_3</sender>
    <signal>toggled(bool)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_cyclic_ch1_3()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1688,7 +1688,7 @@
   <connection>
    <sender>button_send_ch1_4</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_once_ch1_4()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1704,7 +1704,7 @@
   <connection>
    <sender>checkbox_ch1_4</sender>
    <signal>toggled(bool)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_cyclic_ch1_4()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1720,7 +1720,7 @@
   <connection>
    <sender>button_send_ch1_5</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_once_ch1_5()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1736,7 +1736,7 @@
   <connection>
    <sender>checkbox_ch1_5</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_cyclic_ch1_5()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1752,7 +1752,7 @@
   <connection>
    <sender>comboBox_ch2_1</sender>
    <signal>currentIndexChanged(QString)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_select_action_ch2_1()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1768,7 +1768,7 @@
   <connection>
    <sender>comboBox_ch2_2</sender>
    <signal>currentIndexChanged(QString)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_select_action_ch2_2()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1784,7 +1784,7 @@
   <connection>
    <sender>comboBox_ch2_3</sender>
    <signal>currentIndexChanged(QString)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_select_action_ch2_3()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1800,7 +1800,7 @@
   <connection>
    <sender>comboBox_ch2_4</sender>
    <signal>currentIndexChanged(QString)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_select_action_ch2_4()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1816,7 +1816,7 @@
   <connection>
    <sender>comboBox_ch2_5</sender>
    <signal>currentIndexChanged(QString)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_select_action_ch2_5()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1832,7 +1832,7 @@
   <connection>
    <sender>button_send_ch2_1</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_once_ch2_1()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1848,7 +1848,7 @@
   <connection>
    <sender>button_send_ch2_2</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_once_ch2_2()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1864,7 +1864,7 @@
   <connection>
    <sender>button_send_ch2_3</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_once_ch2_3()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1880,7 +1880,7 @@
   <connection>
    <sender>button_send_ch2_4</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_once_ch2_4()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1896,7 +1896,7 @@
   <connection>
    <sender>button_send_ch2_5</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_once_ch2_5()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1912,7 +1912,7 @@
   <connection>
    <sender>checkbox_ch2_1</sender>
    <signal>toggled(bool)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_cyclic_ch2_1()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1928,7 +1928,7 @@
   <connection>
    <sender>checkbox_ch2_2</sender>
    <signal>toggled(bool)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_cyclic_ch2_2()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1944,7 +1944,7 @@
   <connection>
    <sender>checkbox_ch2_3</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_cyclic_ch2_3()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1960,7 +1960,7 @@
   <connection>
    <sender>checkbox_ch2_4</sender>
    <signal>toggled(bool)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_cyclic_ch2_4()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1976,7 +1976,7 @@
   <connection>
    <sender>checkbox_ch2_5</sender>
    <signal>toggled(bool)</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>send_action_cyclic_ch2_5()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -1992,7 +1992,7 @@
   <connection>
    <sender>datafiled_refresh_save_ch2_1</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_encode_action_ch2_1()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -2008,7 +2008,7 @@
   <connection>
    <sender>datafiled_refresh_save_ch2_2</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_encode_action_ch2_2()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -2024,7 +2024,7 @@
   <connection>
    <sender>datafiled_refresh_save_ch2_3</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_encode_action_ch2_3()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -2040,7 +2040,7 @@
   <connection>
    <sender>datafiled_refresh_save_ch2_4</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_encode_action_ch2_4()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -2056,7 +2056,7 @@
   <connection>
    <sender>datafiled_refresh_save_ch2_5</sender>
    <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>BBBCAN_Tool</receiver>
    <slot>msg_encode_action_ch2_5()</slot>
    <hints>
     <hint type="sourcelabel">
