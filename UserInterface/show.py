@@ -1,4 +1,6 @@
-#coding=utf-8
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 #更新一次UI文件
 from os import system
 system('pyuic5 test.ui -o ./Ui_test.py')
@@ -29,6 +31,7 @@ if __name__ == '__main__':
     window.terminal.append("start at : " + time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime()))
     
     sys.exit(app.exec_())
+
 
 
 

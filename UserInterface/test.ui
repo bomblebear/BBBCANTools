@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1151</width>
+    <width>1206</width>
     <height>832</height>
    </rect>
   </property>
@@ -22,7 +22,7 @@
      <rect>
       <x>30</x>
       <y>140</y>
-      <width>711</width>
+      <width>761</width>
       <height>391</height>
      </rect>
     </property>
@@ -130,7 +130,7 @@
        <rect>
         <x>290</x>
         <y>40</y>
-        <width>98</width>
+        <width>111</width>
         <height>25</height>
        </rect>
       </property>
@@ -143,7 +143,7 @@
        <rect>
         <x>290</x>
         <y>80</y>
-        <width>98</width>
+        <width>111</width>
         <height>25</height>
        </rect>
       </property>
@@ -156,7 +156,7 @@
        <rect>
         <x>290</x>
         <y>120</y>
-        <width>98</width>
+        <width>121</width>
         <height>25</height>
        </rect>
       </property>
@@ -169,7 +169,7 @@
        <rect>
         <x>290</x>
         <y>160</y>
-        <width>98</width>
+        <width>111</width>
         <height>25</height>
        </rect>
       </property>
@@ -180,7 +180,7 @@
      <widget class="QLineEdit" name="cycletime_ch1_1">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>400</x>
         <y>40</y>
         <width>51</width>
         <height>27</height>
@@ -190,7 +190,7 @@
      <widget class="QLineEdit" name="cycletime_ch1_2">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>400</x>
         <y>80</y>
         <width>51</width>
         <height>27</height>
@@ -200,7 +200,7 @@
      <widget class="QLineEdit" name="cycletime_ch1_3">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>400</x>
         <y>120</y>
         <width>51</width>
         <height>27</height>
@@ -210,7 +210,7 @@
      <widget class="QLineEdit" name="cycletime_ch1_4">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>400</x>
         <y>160</y>
         <width>51</width>
         <height>27</height>
@@ -233,7 +233,7 @@
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
-        <x>470</x>
+        <x>460</x>
         <y>10</y>
         <width>181</width>
         <height>19</height>
@@ -271,7 +271,7 @@
        <rect>
         <x>290</x>
         <y>200</y>
-        <width>98</width>
+        <width>111</width>
         <height>25</height>
        </rect>
       </property>
@@ -282,7 +282,7 @@
      <widget class="QLineEdit" name="cycletime_ch1_5">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>400</x>
         <y>200</y>
         <width>51</width>
         <height>27</height>
@@ -294,7 +294,7 @@
        <rect>
         <x>460</x>
         <y>40</y>
-        <width>191</width>
+        <width>221</width>
         <height>31</height>
        </rect>
       </property>
@@ -304,7 +304,7 @@
        <rect>
         <x>460</x>
         <y>80</y>
-        <width>191</width>
+        <width>221</width>
         <height>31</height>
        </rect>
       </property>
@@ -314,7 +314,7 @@
        <rect>
         <x>460</x>
         <y>120</y>
-        <width>191</width>
+        <width>221</width>
         <height>31</height>
        </rect>
       </property>
@@ -324,7 +324,7 @@
        <rect>
         <x>460</x>
         <y>160</y>
-        <width>191</width>
+        <width>221</width>
         <height>31</height>
        </rect>
       </property>
@@ -334,7 +334,7 @@
        <rect>
         <x>460</x>
         <y>200</y>
-        <width>191</width>
+        <width>221</width>
         <height>31</height>
        </rect>
       </property>
@@ -342,7 +342,7 @@
      <widget class="QPushButton" name="datafiled_refresh_save_ch1_1">
       <property name="geometry">
        <rect>
-        <x>660</x>
+        <x>700</x>
         <y>40</y>
         <width>41</width>
         <height>31</height>
@@ -355,7 +355,7 @@
      <widget class="QPushButton" name="datafiled_refresh_save_ch1_2">
       <property name="geometry">
        <rect>
-        <x>660</x>
+        <x>700</x>
         <y>80</y>
         <width>41</width>
         <height>31</height>
@@ -368,7 +368,7 @@
      <widget class="QPushButton" name="datafiled_refresh_save_ch1_3">
       <property name="geometry">
        <rect>
-        <x>660</x>
+        <x>700</x>
         <y>120</y>
         <width>41</width>
         <height>31</height>
@@ -381,7 +381,7 @@
      <widget class="QPushButton" name="datafiled_refresh_save_ch1_4">
       <property name="geometry">
        <rect>
-        <x>660</x>
+        <x>700</x>
         <y>160</y>
         <width>41</width>
         <height>31</height>
@@ -394,7 +394,7 @@
      <widget class="QPushButton" name="datafiled_refresh_save_ch1_5">
       <property name="geometry">
        <rect>
-        <x>660</x>
+        <x>700</x>
         <y>200</y>
         <width>41</width>
         <height>31</height>
@@ -458,7 +458,7 @@
        <rect>
         <x>490</x>
         <y>270</y>
-        <width>98</width>
+        <width>111</width>
         <height>25</height>
        </rect>
       </property>
@@ -517,7 +517,7 @@
        <rect>
         <x>490</x>
         <y>310</y>
-        <width>98</width>
+        <width>111</width>
         <height>25</height>
        </rect>
       </property>
@@ -576,9 +576,9 @@
      <widget class="QCheckBox" name="checkbox_ch2_1">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>290</x>
         <y>40</y>
-        <width>98</width>
+        <width>101</width>
         <height>25</height>
        </rect>
       </property>
@@ -589,7 +589,7 @@
      <widget class="QPushButton" name="datafiled_refresh_save_ch2_1">
       <property name="geometry">
        <rect>
-        <x>650</x>
+        <x>700</x>
         <y>40</y>
         <width>41</width>
         <height>31</height>
@@ -602,7 +602,7 @@
      <widget class="QPushButton" name="button_send_ch2_1">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>200</x>
         <y>40</y>
         <width>71</width>
         <height>27</height>
@@ -615,7 +615,7 @@
      <widget class="QLabel" name="label_8">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>10</y>
         <width>131</width>
         <height>19</height>
@@ -628,9 +628,9 @@
      <widget class="QTextEdit" name="datafield_overview_ch2_1">
       <property name="geometry">
        <rect>
-        <x>450</x>
+        <x>460</x>
         <y>40</y>
-        <width>191</width>
+        <width>221</width>
         <height>31</height>
        </rect>
       </property>
@@ -638,7 +638,7 @@
      <widget class="QComboBox" name="comboBox_ch2_1">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>40</y>
         <width>171</width>
         <height>27</height>
@@ -648,7 +648,7 @@
      <widget class="QLineEdit" name="cycletime_ch2_1">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>400</x>
         <y>40</y>
         <width>51</width>
         <height>27</height>
@@ -658,9 +658,9 @@
      <widget class="QTextEdit" name="datafield_overview_ch2_2">
       <property name="geometry">
        <rect>
-        <x>450</x>
+        <x>460</x>
         <y>80</y>
-        <width>191</width>
+        <width>221</width>
         <height>31</height>
        </rect>
       </property>
@@ -668,7 +668,7 @@
      <widget class="QComboBox" name="comboBox_ch2_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>80</y>
         <width>171</width>
         <height>27</height>
@@ -678,7 +678,7 @@
      <widget class="QPushButton" name="datafiled_refresh_save_ch2_2">
       <property name="geometry">
        <rect>
-        <x>650</x>
+        <x>700</x>
         <y>80</y>
         <width>41</width>
         <height>31</height>
@@ -691,7 +691,7 @@
      <widget class="QPushButton" name="button_send_ch2_2">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>200</x>
         <y>80</y>
         <width>71</width>
         <height>27</height>
@@ -704,7 +704,7 @@
      <widget class="QLineEdit" name="cycletime_ch2_2">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>400</x>
         <y>80</y>
         <width>51</width>
         <height>27</height>
@@ -714,9 +714,9 @@
      <widget class="QCheckBox" name="checkbox_ch2_2">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>290</x>
         <y>80</y>
-        <width>98</width>
+        <width>101</width>
         <height>25</height>
        </rect>
       </property>
@@ -727,9 +727,9 @@
      <widget class="QTextEdit" name="datafield_overview_ch2_3">
       <property name="geometry">
        <rect>
-        <x>450</x>
+        <x>460</x>
         <y>120</y>
-        <width>191</width>
+        <width>221</width>
         <height>31</height>
        </rect>
       </property>
@@ -737,7 +737,7 @@
      <widget class="QComboBox" name="comboBox_ch2_3">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>120</y>
         <width>171</width>
         <height>27</height>
@@ -747,7 +747,7 @@
      <widget class="QPushButton" name="datafiled_refresh_save_ch2_3">
       <property name="geometry">
        <rect>
-        <x>650</x>
+        <x>700</x>
         <y>120</y>
         <width>41</width>
         <height>31</height>
@@ -760,7 +760,7 @@
      <widget class="QPushButton" name="button_send_ch2_3">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>200</x>
         <y>120</y>
         <width>71</width>
         <height>27</height>
@@ -773,7 +773,7 @@
      <widget class="QLineEdit" name="cycletime_ch2_3">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>400</x>
         <y>120</y>
         <width>51</width>
         <height>27</height>
@@ -783,9 +783,9 @@
      <widget class="QCheckBox" name="checkbox_ch2_3">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>290</x>
         <y>120</y>
-        <width>98</width>
+        <width>111</width>
         <height>25</height>
        </rect>
       </property>
@@ -796,9 +796,9 @@
      <widget class="QTextEdit" name="datafield_overview_ch2_4">
       <property name="geometry">
        <rect>
-        <x>450</x>
+        <x>460</x>
         <y>160</y>
-        <width>191</width>
+        <width>221</width>
         <height>31</height>
        </rect>
       </property>
@@ -806,7 +806,7 @@
      <widget class="QComboBox" name="comboBox_ch2_4">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>160</y>
         <width>171</width>
         <height>27</height>
@@ -816,7 +816,7 @@
      <widget class="QPushButton" name="datafiled_refresh_save_ch2_4">
       <property name="geometry">
        <rect>
-        <x>650</x>
+        <x>700</x>
         <y>160</y>
         <width>41</width>
         <height>31</height>
@@ -829,7 +829,7 @@
      <widget class="QPushButton" name="button_send_ch2_4">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>200</x>
         <y>160</y>
         <width>71</width>
         <height>27</height>
@@ -842,7 +842,7 @@
      <widget class="QLineEdit" name="cycletime_ch2_4">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>400</x>
         <y>160</y>
         <width>51</width>
         <height>27</height>
@@ -852,9 +852,9 @@
      <widget class="QCheckBox" name="checkbox_ch2_4">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>290</x>
         <y>160</y>
-        <width>98</width>
+        <width>121</width>
         <height>25</height>
        </rect>
       </property>
@@ -865,9 +865,9 @@
      <widget class="QTextEdit" name="datafield_overview_ch2_5">
       <property name="geometry">
        <rect>
-        <x>450</x>
+        <x>460</x>
         <y>200</y>
-        <width>191</width>
+        <width>221</width>
         <height>31</height>
        </rect>
       </property>
@@ -875,7 +875,7 @@
      <widget class="QComboBox" name="comboBox_ch2_5">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>200</y>
         <width>171</width>
         <height>27</height>
@@ -885,7 +885,7 @@
      <widget class="QPushButton" name="datafiled_refresh_save_ch2_5">
       <property name="geometry">
        <rect>
-        <x>650</x>
+        <x>700</x>
         <y>200</y>
         <width>41</width>
         <height>31</height>
@@ -898,7 +898,7 @@
      <widget class="QPushButton" name="button_send_ch2_5">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>200</x>
         <y>200</y>
         <width>71</width>
         <height>27</height>
@@ -911,7 +911,7 @@
      <widget class="QLineEdit" name="cycletime_ch2_5">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>400</x>
         <y>200</y>
         <width>51</width>
         <height>27</height>
@@ -921,9 +921,9 @@
      <widget class="QCheckBox" name="checkbox_ch2_5">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>290</x>
         <y>200</y>
-        <width>98</width>
+        <width>111</width>
         <height>25</height>
        </rect>
       </property>
@@ -934,7 +934,7 @@
      <widget class="QLabel" name="label_10">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>270</x>
         <y>240</y>
         <width>21</width>
         <height>19</height>
@@ -947,7 +947,7 @@
      <widget class="QLabel" name="label_11">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>240</y>
         <width>131</width>
         <height>19</height>
@@ -960,7 +960,7 @@
      <widget class="QLineEdit" name="ID_custom_ch2_1">
       <property name="geometry">
        <rect>
-        <x>250</x>
+        <x>260</x>
         <y>270</y>
         <width>61</width>
         <height>27</height>
@@ -970,7 +970,7 @@
      <widget class="QLineEdit" name="cycletime_custom_ch2_1">
       <property name="geometry">
        <rect>
-        <x>590</x>
+        <x>600</x>
         <y>270</y>
         <width>51</width>
         <height>27</height>
@@ -980,7 +980,7 @@
      <widget class="QPushButton" name="edit_save_custom_ch2_1">
       <property name="geometry">
        <rect>
-        <x>320</x>
+        <x>330</x>
         <y>270</y>
         <width>41</width>
         <height>31</height>
@@ -993,7 +993,7 @@
      <widget class="QCheckBox" name="cyclic_custom_ch2_1">
       <property name="geometry">
        <rect>
-        <x>480</x>
+        <x>490</x>
         <y>270</y>
         <width>98</width>
         <height>25</height>
@@ -1006,7 +1006,7 @@
      <widget class="QTextEdit" name="datafield_custom_ch2_1">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>270</y>
         <width>231</width>
         <height>31</height>
@@ -1016,7 +1016,7 @@
      <widget class="QPushButton" name="send_custom_ch2_1">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>390</x>
         <y>270</y>
         <width>71</width>
         <height>27</height>
@@ -1029,17 +1029,17 @@
      <widget class="QLineEdit" name="ID_custom_ch2_2">
       <property name="geometry">
        <rect>
-        <x>250</x>
+        <x>260</x>
         <y>310</y>
         <width>61</width>
-        <height>27</height>
+        <height>31</height>
        </rect>
       </property>
      </widget>
      <widget class="QLineEdit" name="cycletime_custom_ch2_2">
       <property name="geometry">
        <rect>
-        <x>590</x>
+        <x>600</x>
         <y>310</y>
         <width>51</width>
         <height>27</height>
@@ -1049,7 +1049,7 @@
      <widget class="QPushButton" name="send_custom_ch2_2">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>390</x>
         <y>310</y>
         <width>71</width>
         <height>27</height>
@@ -1062,7 +1062,7 @@
      <widget class="QPushButton" name="edit_save_custom_ch2_2">
       <property name="geometry">
        <rect>
-        <x>320</x>
+        <x>330</x>
         <y>310</y>
         <width>41</width>
         <height>31</height>
@@ -1075,7 +1075,7 @@
      <widget class="QTextEdit" name="datafield_custom_ch2_2">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>20</x>
         <y>310</y>
         <width>231</width>
         <height>31</height>
@@ -1085,7 +1085,7 @@
      <widget class="QCheckBox" name="cyclic_custom_ch2_2">
       <property name="geometry">
        <rect>
-        <x>480</x>
+        <x>490</x>
         <y>310</y>
         <width>98</width>
         <height>25</height>
@@ -1115,7 +1115,7 @@
      <rect>
       <x>30</x>
       <y>10</y>
-      <width>781</width>
+      <width>751</width>
       <height>121</height>
      </rect>
     </property>
@@ -1294,9 +1294,9 @@
    <widget class="QTextBrowser" name="refresh_diag">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>660</x>
       <y>570</y>
-      <width>511</width>
+      <width>521</width>
       <height>221</height>
      </rect>
     </property>
@@ -1306,7 +1306,7 @@
      <rect>
       <x>30</x>
       <y>570</y>
-      <width>511</width>
+      <width>561</width>
       <height>221</height>
      </rect>
     </property>
@@ -1327,7 +1327,7 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>660</x>
       <y>540</y>
       <width>111</width>
       <height>19</height>
@@ -1340,7 +1340,7 @@
    <widget class="QTabWidget" name="tabWidget_2">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>810</x>
       <y>140</y>
       <width>371</width>
       <height>391</height>

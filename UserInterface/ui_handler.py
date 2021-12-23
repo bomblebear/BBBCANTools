@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 #pyqt5
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets

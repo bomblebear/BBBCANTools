@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from typing import ChainMap, get_args
 from PyQt5 import QtCore, QtGui, QtWidgets
 import can
@@ -30,8 +33,8 @@ def button_action_dbc(mywindow, channelnum):
                         
             comboBox_attr = getattr(mywindow, "comboBox_ch"+channelnum+"_"+str(i+1), None)
             comboBox_attr.clear()            #清空下拉框
-            comboBox_attr.setCurrentIndex(-1) #设置当前无目标被选中
             comboBox_attr.addItems(msglist)  #加入msg列表
+            comboBox_attr.setCurrentIndex(-1) #设置当前无目标被选中
 
             
             cycletime_attr = getattr(mywindow,"cycletime_ch"+channelnum+"_"+str(i+1),None)
@@ -47,17 +50,22 @@ def button_action_dbc(mywindow, channelnum):
 
 
 
-
 #-------------------------------------------------#
 #---------------下拉选择按钮响应函数-----------------#
 #-------------------------------------------------#
 def msg_select_action(mywindow,channel):
+    
     canchannel = channel[0:-2]
+
     comboBox_attr = getattr(mywindow, "comboBox_"+channel,None )
     selected_msgname = comboBox_attr.currentText()                         #获取当前选中的messgae
 
-    db_attr = getattr(mywindow, "db"+channel[2])
-    selected_msg = db_attr.get_message_by_name(selected_msgname)
+    try:
+        db_attr = getattr(mywindow, "db"+channel[2])
+        selected_msg = db_attr.get_message_by_name(selected_msgname)
+    except:
+        #mywindow.terminal.append('[error] ['+ canchannel +'] dbc file error! Please check')
+        pass
 
     #cycle time 更新显示
     try:
@@ -68,9 +76,11 @@ def msg_select_action(mywindow,channel):
     cycletime_attr = getattr(mywindow,"cycletime_"+channel,None)
     cycletime_attr.setText(cycletime)
     
-    datafiled_refresh_save_attr = getattr(mywindow,"datafiled_refresh_save_"+channel,None)
-    datafiled_refresh_save_attr.setText('Edit')  #切换message的时候，重新开启编辑
-    
+    try:
+        datafiled_refresh_save_attr = getattr(mywindow,"datafiled_refresh_save_"+channel,None)
+        datafiled_refresh_save_attr.setText('Edit')  #切换message的时候，重新开启编辑
+    except:
+        pass
 
     setattr(mywindow,"packedmsg_"+channel,b'\x00\x00\x00\x00\x00\x00\x00\x00')
     setattr(mywindow,"editflag_"+canchannel,0)     # 1表示有人正在编辑状态，还未保存
@@ -83,12 +93,16 @@ def msg_encode_action(mywindow,channel):
     canchannel = channel[0:-2]
     comboBox_attr = getattr(mywindow, "comboBox_"+channel,None )
     selected_msgname = comboBox_attr.currentText()                         #获取当前选中的messgae
-
-    db_attr = getattr(mywindow, "db"+channel[2])
-    selected_msg = db_attr.get_message_by_name(selected_msgname)
+    try:
+        db_attr = getattr(mywindow, "db"+channel[2])
+        selected_msg = db_attr.get_message_by_name(selected_msgname)
     
-    datafiled_refresh_save_attr = getattr(mywindow,"datafiled_refresh_save_"+channel,None)
-    text = datafiled_refresh_save_attr.text()
+        datafiled_refresh_save_attr = getattr(mywindow,"datafiled_refresh_save_"+channel,None)
+        text = datafiled_refresh_save_attr.text()
+    except:
+        text = "Edit"   #出错时，不可进入编辑状态
+        mywindow.terminal.append('[error] ['+ canchannel +'] There is no message selected, please check it')
+    
     #text = mywindow.datafiled_refresh_save_ch1_1.text()
     flag = 0
 
@@ -97,18 +111,19 @@ def msg_encode_action(mywindow,channel):
         mywindow.signal_edit_window_2.clear()
 
         #decoded_dict = mywindow.db1.decode_message(selected_msg.frame_id, mywindow.packedmsg_ch1_1,decode_choices=False)
+        try:
+            decoded_dict = db_attr.decode_message(selected_msg.frame_id, getattr(mywindow,"packedmsg_"+channel),decode_choices=False)
+            decoded_dict_2 = db_attr.decode_message(selected_msg.frame_id, getattr(mywindow,"packedmsg_"+channel),decode_choices=True)
         
-        decoded_dict = db_attr.decode_message(selected_msg.frame_id, getattr(mywindow,"packedmsg_"+channel),decode_choices=False)
-        decoded_dict_2 = db_attr.decode_message(selected_msg.frame_id, getattr(mywindow,"packedmsg_"+channel),decode_choices=True)
-
-        
-        for key in decoded_dict.keys():
-            mywindow.signal_edit_window.appendPlainText(key+" : "+str(decoded_dict[key]))
-            mywindow.signal_edit_window_2.appendPlainText(key+" : "+str(decoded_dict_2[key]))
-        flag = 1
-        mywindow.terminal.append('[info] ['+ canchannel +'] Editing')
-        
-        setattr(mywindow,"editflag_"+canchannel,1)
+            for key in decoded_dict.keys():
+                mywindow.signal_edit_window.appendPlainText(key+" : "+str(decoded_dict[key]))
+                mywindow.signal_edit_window_2.appendPlainText(key+" : "+str(decoded_dict_2[key]))
+            flag = 1
+            mywindow.terminal.append('[info] ['+ canchannel +'] Editing')
+            
+            setattr(mywindow,"editflag_"+canchannel,1)
+        except:
+            pass
 
 
     if text == 'Save':
