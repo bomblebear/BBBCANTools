@@ -135,3 +135,54 @@ class mywindow(QtWidgets.QMainWindow, Ui_BBBCAN_Tool):
         button_action.send_action_cyclic(self, "ch2_4")
     def send_action_cyclic_ch2_5(self):
         button_action.send_action_cyclic(self, "ch2_5")
+
+
+    #-------------------------------------------------#
+    #--------------自定义报文编辑按钮--------------------#
+    #-------------------------------------------------#
+
+    def edit_custom_ch1_1(self):
+        button_action.edit_custom(self,"ch1_1")
+    def edit_custom_ch1_2(self):
+        button_action.edit_custom(self,"ch1_2")
+    def edit_custom_ch2_1(self):
+        button_action.edit_custom(self,"ch2_1")
+    def edit_custom_ch2_2(self):
+        button_action.edit_custom(self,"ch2_2")
+
+
+    #-------------------------------------------------#
+    #--------------自定义报文发送一次按钮-----------------#
+    #-------------------------------------------------#  
+
+    def send_action_once_custom_ch1_1(self):
+        button_action.send_action_once_custom(self,"ch1_1")
+    def send_action_once_custom_ch1_2(self):
+        button_action.send_action_once_custom(self,"ch1_2")
+    def send_action_once_custom_ch2_1(self):
+        button_action.send_action_once_custom(self,"ch2_1")
+    def send_action_once_custom_ch2_2(self):
+        button_action.send_action_once_custom(self,"ch2_2")
+
+    #-------------------------------------------------#
+    #--------------自定义报文循环发送按钮-----------------#
+    #-------------------------------------------------#  
+
+    def send_action_cyclic_custom_ch1_1(self):
+        button_action.send_action_cyclic_custom(self,"ch1_1")
+    def send_action_cyclic_custom_ch1_2(self):
+        button_action.send_action_cyclic_custom(self,"ch1_2")
+    def send_action_cyclic_custom_ch2_1(self):
+        button_action.send_action_cyclic_custom(self,"ch2_1")
+    def send_action_cyclic_custom_ch2_2(self):
+        button_action.send_action_cyclic_custom(self,"ch2_2")
+
+
+
+
+
+
+
+
+
+

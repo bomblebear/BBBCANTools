@@ -14,6 +14,7 @@ from Ui_test import Ui_BBBCAN_Tool
 from dbc_handler import *
 
 from ui_handler import mywindow
+import button_action
 
 import time
 now = time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime()) + " : "
@@ -25,12 +26,15 @@ if __name__ == '__main__':
     window = mywindow()
     window.show()
 
+    button_action.attr_init(mywindow)
+
     window.terminal.append('-------------------------------------------------------------------------------------------')
     window.terminal.append('---------https://github.com/bbbearman?tab=repositories--------')
     window.terminal.append('-------------------------------------------------------------------------------------------')
     window.terminal.append("start at : " + time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime()))
     
     sys.exit(app.exec_())
+
 
 
 

@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from typing import ChainMap, get_args
-from PyQt5 import QtCore, QtGui, QtWidgets
 import can
 import cantools
 from dbc_handler import dbcfile_acquire,dbc_msg_list
 
+
+    
 #-------------------------------------------------#
 #-------------------dbc获取函数--------------------#
 #-------------------------------------------------#
@@ -207,6 +207,118 @@ def send_action_cyclic(mywindow,channel):
             mywindow.edit_and_send_flag = 0
     except:
         mywindow.edit_and_send_flag = 0
+
+
+
+
+
+
+#-------------------------------------------------#
+#-------------------一些变量的初始化-----------------#
+#-------------------------------------------------#
+def attr_init(mywindow):
+
+    channellist = ["ch1_1","ch1_2","ch2_1","ch2_2"]
+
+
+    for item in channellist:
+        setattr(mywindow,"custom_packedmsg_"+item,b'\x00\x00\x00\x00\x00\x00\x00\x00')
+        setattr(mywindow,"custom_framid_"+item,0x000)
+        setattr(mywindow,"custom_cycletime_"+item,10)
+
+    mywindow.edit_save_flag_custom_ch1 = 0
+    mywindow.edit_save_flag_custom_ch2 = 0   
+
+
+
+
+
+def edit_custom(mywindow,channel):    
+    canchannel = channel[0:-2]
+
+    datafield_attr = getattr(mywindow, "datafield_custom_"+channel, None)
+    ID_attr = getattr(mywindow, "ID_custom_"+channel, None)
+    edit_save_attr = getattr(mywindow, "edit_save_custom_"+channel,None)
+    cyclic_button_attr = getattr(mywindow, "cyclic_custom_"+channel,None)
+    cycletime_attr = getattr(mywindow, "cycletime_custom_"+channel,None)
+
+
+    text = edit_save_attr.text()
+
+    if text == "Edit" and getattr(mywindow, "edit_save_flag_custom_"+canchannel, None) == 0:   #没有其他行在编辑，可以进入编辑
+
+        #正在编辑的变红色
+        edit_save_attr.setText('Save')
+        edit_save_attr.setStyleSheet("color: red")
+
+        setattr(mywindow, "edit_save_flag_custom_"+canchannel, 1)
+
+
+        datafield_attr.setText(str(getattr(mywindow, "custom_packedmsg_"+channel).hex('-')))
+        ID_attr.setText(str(hex(getattr(mywindow, "custom_framid_"+channel))))
+        cycletime_attr.setText(str(getattr(mywindow, "custom_cycletime_"+channel)))
+    
+
+    if text == "Save":
+
+        try:
+            pass   #保存数据
+        except:
+            mywindow.terminal.append('[Error] ['+ canchannel +'] Something error')
+        else:
+        #编辑完毕回复黑色
+            edit_save_attr.setText('Edit')
+            edit_save_attr.setStyleSheet("color: black")
+            
+            setattr(mywindow, "edit_save_flag_custom_"+canchannel, 0)   #编辑状态清空
+
+
+
+
+
+
+
+def send_action_once_custom(mywindow,channel):
+
+    canchannel = channel[0:-2]
+
+    #datafield_attr = getattr(mywindow, "datafield_custom_"+channel, None)
+    #ID_attr = getattr(mywindow, "ID_custom_"+channel, None)
+    #edit_save_attr = getattr(mywindow, "edit_save_custom_"+channel,None)
+    cyclic_button_attr = getattr(mywindow, "cyclic_custom_"+channel,None)
+    #cycletime_attr = getattr(mywindow, "cycletime_custom_"+channel,None)
+
+    if not cyclic_button_attr.isChecked():
+        msg_str = str(getattr(mywindow, "custom_packedmsg_"+channel).hex('-'))
+        id_str = str(hex(getattr(mywindow, "custom_framid_"+channel)))
+        #cycletime_str = str(getattr(mywindow, "custom_cycletime_"+channel))
+
+        mywindow.terminal.append('[info] ['+ canchannel +'] send once '+ id_str +"  "+  msg_str)
+
+    else:
+        mywindow.terminal.append('[warning] ['+ canchannel +'] cannot send once when this message sending cyclicly!')
+
+
+
+def send_action_cyclic_custom(mywindow,channel):
+    canchannel = channel[0:-2]
+
+    #datafield_attr = getattr(mywindow, "datafield_custom_"+channel, None)
+    #ID_attr = getattr(mywindow, "ID_custom_"+channel, None)
+    #edit_save_attr = getattr(mywindow, "edit_save_custom_"+channel,None)
+    cyclic_button_attr = getattr(mywindow, "cyclic_custom_"+channel,None)
+    #cycletime_attr = getattr(mywindow, "cycletime_custom_"+channel,None)
+
+    if cyclic_button_attr.isChecked():
+        msg_str = str(getattr(mywindow, "custom_packedmsg_"+channel).hex('-'))
+        id_str = str(hex(getattr(mywindow, "custom_framid_"+channel)))
+        cycletime_str = str(getattr(mywindow, "custom_cycletime_"+channel))
+
+        mywindow.terminal.append('[info] ['+ canchannel +'] send cyclic '+ id_str +" "+ cycletime_str+"ms  "+  msg_str )
+    else:
+        mywindow.terminal.append('[warning] ['+ canchannel +'] someting wrong')
+
+
 
 
 

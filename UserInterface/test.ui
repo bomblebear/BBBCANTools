@@ -1115,7 +1115,7 @@
      <rect>
       <x>30</x>
       <y>10</y>
-      <width>751</width>
+      <width>781</width>
       <height>121</height>
      </rect>
     </property>
@@ -1296,7 +1296,7 @@
      <rect>
       <x>660</x>
       <y>570</y>
-      <width>521</width>
+      <width>271</width>
       <height>221</height>
      </rect>
     </property>
@@ -1536,8 +1536,8 @@
    <slot>msg_encode_action_ch1_1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>727</x>
-     <y>240</y>
+     <x>732</x>
+     <y>241</y>
     </hint>
     <hint type="destinationlabel">
      <x>681</x>
@@ -1552,8 +1552,8 @@
    <slot>msg_encode_action_ch1_2()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>706</x>
-     <y>279</y>
+     <x>732</x>
+     <y>281</y>
     </hint>
     <hint type="destinationlabel">
      <x>594</x>
@@ -1568,8 +1568,8 @@
    <slot>msg_encode_action_ch1_3()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>720</x>
-     <y>317</y>
+     <x>732</x>
+     <y>321</y>
     </hint>
     <hint type="destinationlabel">
      <x>608</x>
@@ -1584,8 +1584,8 @@
    <slot>msg_encode_action_ch1_4()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>710</x>
-     <y>356</y>
+     <x>732</x>
+     <y>361</y>
     </hint>
     <hint type="destinationlabel">
      <x>532</x>
@@ -1600,8 +1600,8 @@
    <slot>msg_encode_action_ch1_5()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>702</x>
-     <y>385</y>
+     <x>732</x>
+     <y>401</y>
     </hint>
     <hint type="destinationlabel">
      <x>600</x>
@@ -1645,7 +1645,7 @@
    <sender>button_send_ch1_2</sender>
    <signal>clicked()</signal>
    <receiver>BBBCAN_Tool</receiver>
-   <slot>send_action_once_ch1_2()</slot>
+   <slot>edit_custom_ch2_1()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>260</x>
@@ -2016,8 +2016,8 @@
    <slot>msg_encode_action_ch2_1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>710</x>
-     <y>219</y>
+     <x>732</x>
+     <y>241</y>
     </hint>
     <hint type="destinationlabel">
      <x>788</x>
@@ -2032,8 +2032,8 @@
    <slot>msg_encode_action_ch2_2()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>694</x>
-     <y>260</y>
+     <x>732</x>
+     <y>281</y>
     </hint>
     <hint type="destinationlabel">
      <x>782</x>
@@ -2048,8 +2048,8 @@
    <slot>msg_encode_action_ch2_3()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>713</x>
-     <y>303</y>
+     <x>732</x>
+     <y>321</y>
     </hint>
     <hint type="destinationlabel">
      <x>787</x>
@@ -2064,8 +2064,8 @@
    <slot>msg_encode_action_ch2_4()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>692</x>
-     <y>350</y>
+     <x>732</x>
+     <y>361</y>
     </hint>
     <hint type="destinationlabel">
      <x>788</x>
@@ -2080,12 +2080,204 @@
    <slot>msg_encode_action_ch2_5()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>704</x>
-     <y>382</y>
+     <x>732</x>
+     <y>401</y>
     </hint>
     <hint type="destinationlabel">
      <x>790</x>
      <y>331</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_save_custom_ch1_1</sender>
+   <signal>clicked()</signal>
+   <receiver>BBBCAN_Tool</receiver>
+   <slot>edit_custom_ch1_1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>383</x>
+     <y>452</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>621</x>
+     <y>775</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_save_custom_ch1_2</sender>
+   <signal>clicked()</signal>
+   <receiver>BBBCAN_Tool</receiver>
+   <slot>edit_custom_ch1_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>392</x>
+     <y>494</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>620</x>
+     <y>805</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>send_custom_ch1_1</sender>
+   <signal>clicked()</signal>
+   <receiver>BBBCAN_Tool</receiver>
+   <slot>send_action_once_custom_ch1_1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>468</x>
+     <y>455</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1060</x>
+     <y>572</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>send_custom_ch1_2</sender>
+   <signal>clicked()</signal>
+   <receiver>BBBCAN_Tool</receiver>
+   <slot>send_action_once_custom_ch1_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>438</x>
+     <y>488</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1063</x>
+     <y>616</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cyclic_custom_ch1_1</sender>
+   <signal>clicked()</signal>
+   <receiver>BBBCAN_Tool</receiver>
+   <slot>send_action_cyclic_custom_ch1_1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>580</x>
+     <y>454</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1068</x>
+     <y>666</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cyclic_custom_ch1_2</sender>
+   <signal>clicked()</signal>
+   <receiver>BBBCAN_Tool</receiver>
+   <slot>send_action_cyclic_custom_ch1_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>558</x>
+     <y>494</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1070</x>
+     <y>698</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_save_custom_ch2_1</sender>
+   <signal>clicked()</signal>
+   <receiver>BBBCAN_Tool</receiver>
+   <slot>edit_custom_ch2_1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>391</x>
+     <y>464</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>963</x>
+     <y>597</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>edit_save_custom_ch2_2</sender>
+   <signal>clicked()</signal>
+   <receiver>BBBCAN_Tool</receiver>
+   <slot>edit_custom_ch2_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>383</x>
+     <y>502</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1006</x>
+     <y>648</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>send_custom_ch2_1</sender>
+   <signal>clicked()</signal>
+   <receiver>BBBCAN_Tool</receiver>
+   <slot>send_action_once_custom_ch2_1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>438</x>
+     <y>452</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1010</x>
+     <y>690</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>send_custom_ch2_2</sender>
+   <signal>clicked()</signal>
+   <receiver>BBBCAN_Tool</receiver>
+   <slot>send_action_once_custom_ch2_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>463</x>
+     <y>489</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1000</x>
+     <y>723</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cyclic_custom_ch2_1</sender>
+   <signal>clicked()</signal>
+   <receiver>BBBCAN_Tool</receiver>
+   <slot>send_action_cyclic_custom_ch2_1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>577</x>
+     <y>454</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>999</x>
+     <y>771</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cyclic_custom_ch2_2</sender>
+   <signal>clicked()</signal>
+   <receiver>BBBCAN_Tool</receiver>
+   <slot>send_action_cyclic_custom_ch2_2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>553</x>
+     <y>495</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1069</x>
+     <y>744</y>
     </hint>
    </hints>
   </connection>
@@ -2134,5 +2326,17 @@
   <slot>msg_encode_action_ch2_3()</slot>
   <slot>msg_encode_action_ch2_4()</slot>
   <slot>msg_encode_action_ch2_5()</slot>
+  <slot>edit_custom_ch1_1()</slot>
+  <slot>edit_custom_ch1_2()</slot>
+  <slot>edit_custom_ch2_1()</slot>
+  <slot>edit_custom_ch2_2()</slot>
+  <slot>send_action_once_custom_ch1_1()</slot>
+  <slot>send_action_once_custom_ch1_2()</slot>
+  <slot>send_action_once_custom_ch2_1()</slot>
+  <slot>send_action_once_custom_ch2_2()</slot>
+  <slot>send_action_cyclic_custom_ch1_1()</slot>
+  <slot>send_action_cyclic_custom_ch1_2()</slot>
+  <slot>send_action_cyclic_custom_ch2_1()</slot>
+  <slot>send_action_cyclic_custom_ch2_2()</slot>
  </slots>
 </ui>
