@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from sys import byteorder
 import can
 import cantools
 from dbc_handler import dbcfile_acquire,dbc_msg_list
@@ -239,12 +240,10 @@ def edit_custom(mywindow,channel):
     datafield_attr = getattr(mywindow, "datafield_custom_"+channel, None)
     ID_attr = getattr(mywindow, "ID_custom_"+channel, None)
     edit_save_attr = getattr(mywindow, "edit_save_custom_"+channel,None)
-    cyclic_button_attr = getattr(mywindow, "cyclic_custom_"+channel,None)
+    #cyclic_button_attr = getattr(mywindow, "cyclic_custom_"+channel,None)
     cycletime_attr = getattr(mywindow, "cycletime_custom_"+channel,None)
 
-
     text = edit_save_attr.text()
-
     if text == "Edit" and getattr(mywindow, "edit_save_flag_custom_"+canchannel, None) == 0:   #没有其他行在编辑，可以进入编辑
 
         #正在编辑的变红色
@@ -260,9 +259,26 @@ def edit_custom(mywindow,channel):
     
 
     if text == "Save":
-
+    
         try:
-            pass   #保存数据
+            #databyte解析保存
+            datalist = []
+            for item in datafield_attr.toPlainText().split("-"):
+                datalist.append(int(item,16))        #将输入的字符串以十六进制转为int类型
+            #print(datalist)
+            a = datalist[0]|(datalist[1]<<8)|(datalist[2]<<16)|(datalist[3]<<24)|(datalist[4]<<32)|(datalist[5]<<40)|(datalist[6]<<48)|(datalist[7]<<56)
+            b = a.to_bytes(8, byteorder="little",signed = False)
+            setattr(mywindow, "custom_packedmsg_"+ channel, b)
+            
+
+            #cycletime,ID解析保存
+            cycletime = int(cycletime_attr.text())
+            frame_id = int(ID_attr.text().replace("0x",""),16)
+
+            setattr(mywindow, "custom_cycletime_"+channel, cycletime)
+            setattr(mywindow,"custom_framid_"+channel, frame_id)
+
+
         except:
             mywindow.terminal.append('[Error] ['+ canchannel +'] Something error')
         else:
