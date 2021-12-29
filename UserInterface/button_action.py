@@ -280,13 +280,15 @@ def edit_custom(mywindow,channel):
 
 
         except:
-            mywindow.terminal.append('[Error] ['+ canchannel +'] Something error')
+            mywindow.terminal.append('[Error] ['+ canchannel +'] Please verify the data you edit')
         else:
         #编辑完毕回复黑色
             edit_save_attr.setText('Edit')
             edit_save_attr.setStyleSheet("color: black")
             
             setattr(mywindow, "edit_save_flag_custom_"+canchannel, 0)   #编辑状态清空
+
+            mywindow.terminal.append('[Error] ['+ canchannel +'] Encode completely')
 
 
 
