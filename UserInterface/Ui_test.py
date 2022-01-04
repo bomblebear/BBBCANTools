@@ -404,7 +404,7 @@ class Ui_BBBCAN_Tool(object):
         self.datafiled_refresh_save_ch1_5.clicked.connect(BBBCAN_Tool.msg_encode_action_ch1_5)
         self.button_send_ch1_1.clicked.connect(BBBCAN_Tool.send_action_once_ch1_1)
         self.checkbox_ch1_1.toggled['bool'].connect(BBBCAN_Tool.send_action_cyclic_ch1_1)
-        self.button_send_ch1_2.clicked.connect(BBBCAN_Tool.edit_custom_ch2_1)
+        self.button_send_ch1_2.clicked.connect(BBBCAN_Tool.send_action_once_ch1_2)
         self.checkbox_ch1_2.toggled['bool'].connect(BBBCAN_Tool.send_action_cyclic_ch1_2)
         self.button_send_ch1_3.clicked.connect(BBBCAN_Tool.send_action_once_ch1_3)
         self.checkbox_ch1_3.toggled['bool'].connect(BBBCAN_Tool.send_action_cyclic_ch1_3)

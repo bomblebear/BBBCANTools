@@ -5,20 +5,32 @@ from sys import byteorder
 import can
 import cantools
 from dbc_handler import dbcfile_acquire,dbc_msg_list
+import utils
 
 #-------------------------------------------------#
 #------------------zmq连接BBB-·--------------------#
 #-------------------------------------------------#
 #建立zmq通信
-from zmqclient import ZmqClient
+from zmqclient import ZmqClient, zmq_sentmsg_cmd
 zm = ZmqClient('192.168.7.2', 5555, 10000, 5)  # timeout need to be set a bit longer
 
+'''
+aciton:
+
+add_cyclic_msg
+remove_cyclic_msg
+send_single_msg
+
+read_single_msg
+'''
+
+
 def connectBBBact(mywindow):
-    req_0 = {
+    req = {
     "action": "test"
     }
     
-    recv_msg = zm.send_msg(req_0, 5) 
+    recv_msg = zm.send_msg(req, 5) 
     if recv_msg == "":
         mywindow.terminal.append('[error] failed to connect to BBB!')
     
@@ -196,8 +208,13 @@ def send_action_once(mywindow,channel):
 
             db_attr = getattr(mywindow, "db"+channel[2])
             selected_msg = db_attr.get_message_by_name(selected_msgname)
+            
+            id_str = str(hex(selected_msg.frame_id))
+            data_str = str(getattr(mywindow, "packedmsg_"+channel).hex('-'))
 
-            mywindow.terminal.append('[info] ['+ canchannel +'] send once '+ str(hex(selected_msg.frame_id)) +"  "+  str(getattr(mywindow, "packedmsg_"+channel).hex('-')) )
+            mywindow.terminal.append('[info] ['+ canchannel +'] send once '+ id_str +"  "+  data_str )
+            zmq_sentmsg_cmd("send_single_msg",channel, id_str, data_str,"0")
+
         except:
             mywindow.terminal.append('[error] ['+ canchannel +'] please verify the data you want to send!')
     else:
@@ -220,11 +237,27 @@ def send_action_cyclic(mywindow,channel):
                 db_attr = getattr(mywindow, "db"+channel[2])
                 selected_msg = db_attr.get_message_by_name(selected_msgname)
                 
-                mywindow.terminal.append('[info] ['+ canchannel +'] send cyclic '+ str(hex(selected_msg.frame_id)) +" "+ cycletime_attr.text()+"ms  "+  str(getattr(mywindow, "packedmsg_"+channel).hex('-')) )
+                id_str = str(hex(selected_msg.frame_id))
+                data_str = str(getattr(mywindow, "packedmsg_"+channel).hex('-'))
+                cycletime_str = cycletime_attr.text()
+                                
+                mywindow.terminal.append('[info] ['+ canchannel +'] send cyclic '+ id_str +" "+ cycletime_str+"ms  "+  data_str )
+                zmq_sentmsg_cmd("add_cyclic_msg",channel, id_str, data_str, cycletime_str)
             except:
                 mywindow.terminal.append('[error] ['+ canchannel +'] please verify the data you want to send!')
         elif mywindow.edit_and_send_flag == 0:
+            
+            selected_msgname = comboBox_attr.currentText()               #获取当前选中的message
+            db_attr = getattr(mywindow, "db"+channel[2])
+            selected_msg = db_attr.get_message_by_name(selected_msgname)
+            
+            id_str = str(hex(selected_msg.frame_id))
+            data_str = str(getattr(mywindow, "packedmsg_"+channel).hex('-'))
+            cycletime_str = cycletime_attr.text()
+               
             mywindow.terminal.append('[info] ['+ canchannel +'] stop send cyclic message now')
+            zmq_sentmsg_cmd("remove_cyclic_msg",channel, id_str, data_str, cycletime_str)
+            
         else:
             mywindow.edit_and_send_flag = 0
     except:
@@ -278,21 +311,18 @@ def edit_custom(mywindow,channel):
         datafield_attr.setText(str(getattr(mywindow, "custom_packedmsg_"+channel).hex('-')))
         ID_attr.setText(str(hex(getattr(mywindow, "custom_framid_"+channel))))
         cycletime_attr.setText(str(getattr(mywindow, "custom_cycletime_"+channel)))
+
     
 
     if text == "Save":
     
         try:
             #databyte解析保存
-            datalist = []
-            for item in datafield_attr.toPlainText().split("-"):
-                datalist.append(int(item,16))        #将输入的字符串以十六进制转为int类型
-            #print(datalist)
-            a = datalist[0]|(datalist[1]<<8)|(datalist[2]<<16)|(datalist[3]<<24)|(datalist[4]<<32)|(datalist[5]<<40)|(datalist[6]<<48)|(datalist[7]<<56)
-            b = a.to_bytes(8, byteorder="little",signed = False)
-            setattr(mywindow, "custom_packedmsg_"+ channel, b)
-            
 
+            databyte_str =  datafield_attr.toPlainText()
+               
+            setattr(mywindow, "custom_packedmsg_"+ channel, utils.str2bytearray(databyte_str))
+            
             #cycletime,ID解析保存
             cycletime = int(cycletime_attr.text())
             frame_id = int(ID_attr.text().replace("0x",""),16)
@@ -311,6 +341,8 @@ def edit_custom(mywindow,channel):
             setattr(mywindow, "edit_save_flag_custom_"+canchannel, 0)   #编辑状态清空
 
             mywindow.terminal.append('[Error] ['+ canchannel +'] Encode completely')
+
+            send_action_cyclic_custom(mywindow, channel)
 
 
 
@@ -335,6 +367,7 @@ def send_action_once_custom(mywindow,channel):
         id_str = str(hex(getattr(mywindow, "custom_framid_"+channel)))
         #cycletime_str = str(getattr(mywindow, "custom_cycletime_"+channel))
 
+        zmq_sentmsg_cmd("send_single_msg", channel, id_str, msg_str, "0")
         mywindow.terminal.append('[info] ['+ canchannel +'] send once '+ id_str +"  "+  msg_str)
 
     else:
@@ -360,12 +393,11 @@ def send_action_cyclic_custom(mywindow,channel):
     if cyclic_button_attr.isChecked():
 
         mywindow.terminal.append('[info] ['+ canchannel +'] send cyclic '+ id_str +" "+ cycletime_str+"ms  "+  msg_str )
+        zmq_sentmsg_cmd("add_cyclic_msg", channel, id_str, msg_str, cycletime_str)
+    
     else:
         mywindow.terminal.append('[info] ['+ canchannel +'] stop send cyclic '+ id_str +" "+ cycletime_str+"ms  "+  msg_str )
-
-
-
-
+        zmq_sentmsg_cmd("remove_cyclic_msg", channel, id_str, msg_str, cycletime_str)
 
 
 

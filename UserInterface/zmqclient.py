@@ -3,7 +3,6 @@ import sys
 import json
 from time import *
 
-
 class ZmqClient(object):
     def __init__(self, address, port, rcv_timeout=2000, retry=3):
         # defaul recv timeout will be set to 2000 milliseconds
@@ -61,6 +60,23 @@ class ZmqClient(object):
         self.socket.close()
 
 
+zm1 = ZmqClient('192.168.7.2', 5555, 10000, 5)  # timeout need to be set a bit longer
+
+
+#channel: "ch1_1"
+def zmq_sentmsg_cmd(cmd_str, channel_str, msg_id_str, data_str, cycletime_ms_str):
+    req = {
+    "action": cmd_str,
+    "bus": "can"+str(int(channel_str[2])-1),
+    "msg_id": msg_id_str,
+    "data": data_str,
+    "cycletime": cycletime_ms_str 
+    }
+    recv_msg = zm1.send_msg(req, 1)
+    print(recv_msg)
+
+
+
 
 
 if __name__ == "__main__":
@@ -72,16 +88,7 @@ if __name__ == "__main__":
         "bus": "CDC",
         "msg_name": "CGW_02"
     }
-    req_2 = {
-        "action": "listen_cyclic_msg",
-        "bus": "CDC",
-        "msg_name": "CGW_02",
-        "listen_period": 5  # in seconds
-    }
-    zm = ZmqClient('192.168.7.2', 5555, 10000, 5)  # timeout need to be set a bit longer
-    recv_msg = zm.send_msg(req_0, 5) 
+
+    #zm1 = ZmqClient('192.168.7.2', 5555, 10000, 5)  # timeout need to be set a bit longer
+    recv_msg = zm1.send_msg(req_0, 5) 
     print(recv_msg)
-    # sleep(10)
-    # print(zm.send_msg(req_1, 4))
-    # sleep(5)
-    # print(zm.send_msg(req_2, 6))

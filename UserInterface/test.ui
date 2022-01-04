@@ -1629,7 +1629,7 @@
    <sender>button_send_ch1_2</sender>
    <signal>clicked()</signal>
    <receiver>BBBCAN_Tool</receiver>
-   <slot>edit_custom_ch2_1()</slot>
+   <slot>send_action_once_ch1_2()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>260</x>
