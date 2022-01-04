@@ -212,8 +212,9 @@ def send_action_once(mywindow,channel):
             id_str = str(hex(selected_msg.frame_id))
             data_str = str(getattr(mywindow, "packedmsg_"+channel).hex('-'))
 
-            mywindow.terminal.append('[info] ['+ canchannel +'] send once '+ id_str +"  "+  data_str )
             zmq_sentmsg_cmd("send_single_msg",channel, id_str, data_str,"0")
+            mywindow.terminal.append('[info] ['+ canchannel +'] send once '+ id_str +"  "+  data_str )
+
 
         except:
             mywindow.terminal.append('[error] ['+ canchannel +'] please verify the data you want to send!')
@@ -245,8 +246,10 @@ def send_action_cyclic(mywindow,channel):
                 zmq_sentmsg_cmd("add_cyclic_msg",channel, id_str, data_str, cycletime_str)
             except:
                 mywindow.terminal.append('[error] ['+ canchannel +'] please verify the data you want to send!')
-        elif mywindow.edit_and_send_flag == 0:
-            
+
+
+        #elif mywindow.edit_and_send_flag == 0:
+        else:   
             selected_msgname = comboBox_attr.currentText()               #获取当前选中的message
             db_attr = getattr(mywindow, "db"+channel[2])
             selected_msg = db_attr.get_message_by_name(selected_msgname)
@@ -254,14 +257,15 @@ def send_action_cyclic(mywindow,channel):
             id_str = str(hex(selected_msg.frame_id))
             data_str = str(getattr(mywindow, "packedmsg_"+channel).hex('-'))
             cycletime_str = cycletime_attr.text()
-               
+
+            zmq_sentmsg_cmd("remove_cyclic_msg",channel, id_str, data_str, cycletime_str)               
             mywindow.terminal.append('[info] ['+ canchannel +'] stop send cyclic message now')
-            zmq_sentmsg_cmd("remove_cyclic_msg",channel, id_str, data_str, cycletime_str)
-            
-        else:
-            mywindow.edit_and_send_flag = 0
+
+           
+        #else:
+            #mywindow.edit_and_send_flag = 0
     except:
-        mywindow.edit_and_send_flag = 0
+        mywindow.edit_and_send_flag = 0    #2022.Jan.4th，坏事了，我忘记这个flag是用来干啥的了
 
 
 
@@ -391,13 +395,14 @@ def send_action_cyclic_custom(mywindow,channel):
     cycletime_str = str(getattr(mywindow, "custom_cycletime_"+channel))
 
     if cyclic_button_attr.isChecked():
-
-        mywindow.terminal.append('[info] ['+ canchannel +'] send cyclic '+ id_str +" "+ cycletime_str+"ms  "+  msg_str )
         zmq_sentmsg_cmd("add_cyclic_msg", channel, id_str, msg_str, cycletime_str)
+        mywindow.terminal.append('[info] ['+ canchannel +'] send cyclic '+ id_str +" "+ cycletime_str+"ms  "+  msg_str )
+
     
     else:
-        mywindow.terminal.append('[info] ['+ canchannel +'] stop send cyclic '+ id_str +" "+ cycletime_str+"ms  "+  msg_str )
         zmq_sentmsg_cmd("remove_cyclic_msg", channel, id_str, msg_str, cycletime_str)
+        mywindow.terminal.append('[info] ['+ canchannel +'] stop send cyclic '+ id_str +" "+ cycletime_str+"ms  "+  msg_str )
+
 
 
 
