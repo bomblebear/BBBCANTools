@@ -3,6 +3,9 @@ import sys
 import json
 from time import *
 
+debug_flag = 0
+
+
 class ZmqClient(object):
     def __init__(self, address, port, rcv_timeout=2000, retry=3):
         # defaul recv timeout will be set to 2000 milliseconds
@@ -64,7 +67,7 @@ zm1 = ZmqClient('192.168.7.2', 5555, 10000, 5)  # timeout need to be set a bit l
 
 
 #channel: "ch1_1"
-def zmq_sentmsg_cmd(cmd_str, channel_str, msg_id_str, data_str, cycletime_ms_str):
+def zmq_sentmsg_cmd(cmd_str, channel_str, msg_id_str, data_str, cycletime_ms_str, mywindow):
     req = {
     "action": cmd_str,
     "bus": "can"+str(int(channel_str[2])-1),
@@ -72,11 +75,14 @@ def zmq_sentmsg_cmd(cmd_str, channel_str, msg_id_str, data_str, cycletime_ms_str
     "data": data_str,
     "cycletime": cycletime_ms_str 
     }
-    recv_msg = zm1.send_msg(req, 1)
-    print(recv_msg)
 
+    if mywindow.debugflag == 0:
 
-
+        recv_msg = zm1.send_msg(req, 1)
+        print(recv_msg)
+    
+    else:
+        pass
 
 
 if __name__ == "__main__":

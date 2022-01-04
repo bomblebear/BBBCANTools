@@ -126,6 +126,7 @@ def msg_select_action(mywindow,channel):
 def msg_encode_action(mywindow,channel):
     canchannel = channel[0:-2]
     comboBox_attr = getattr(mywindow, "comboBox_"+channel,None )
+    checkbox_attr = getattr(mywindow, "checkbox_"+channel, None)
     selected_msgname = comboBox_attr.currentText()                         #获取当前选中的messgae
     try:
         db_attr = getattr(mywindow, "db"+channel[2])
@@ -189,8 +190,9 @@ def msg_encode_action(mywindow,channel):
     elif flag == 2:
         datafiled_refresh_save_attr.setText('Edit')
         datafiled_refresh_save_attr.setStyleSheet("color: black")
-        send_action_cyclic(mywindow, channel)    #如果此时报文正在发送，而且成功修改了一次报文内容，需要将报文内容更新发送至总线
-        mywindow.edit_and_send_flag = 1
+        if checkbox_attr.isChecked():
+            send_action_cyclic(mywindow, channel)    #如果此时报文正在发送，而且成功修改了一次报文内容，需要将报文内容更新发送至总线
+        #mywindow.edit_and_send_flag = 1
     flag = 0
     
 
@@ -212,7 +214,7 @@ def send_action_once(mywindow,channel):
             id_str = str(hex(selected_msg.frame_id))
             data_str = str(getattr(mywindow, "packedmsg_"+channel).hex('-'))
 
-            zmq_sentmsg_cmd("send_single_msg",channel, id_str, data_str,"0")
+            zmq_sentmsg_cmd("send_single_msg",channel, id_str, data_str,"0", mywindow)
             mywindow.terminal.append('[info] ['+ canchannel +'] send once '+ id_str +"  "+  data_str )
 
 
@@ -243,7 +245,7 @@ def send_action_cyclic(mywindow,channel):
                 cycletime_str = cycletime_attr.text()
                                 
                 mywindow.terminal.append('[info] ['+ canchannel +'] send cyclic '+ id_str +" "+ cycletime_str+"ms  "+  data_str )
-                zmq_sentmsg_cmd("add_cyclic_msg",channel, id_str, data_str, cycletime_str)
+                zmq_sentmsg_cmd("add_cyclic_msg",channel, id_str, data_str, cycletime_str, mywindow)
             except:
                 mywindow.terminal.append('[error] ['+ canchannel +'] please verify the data you want to send!')
 
@@ -258,15 +260,15 @@ def send_action_cyclic(mywindow,channel):
             data_str = str(getattr(mywindow, "packedmsg_"+channel).hex('-'))
             cycletime_str = cycletime_attr.text()
 
-            zmq_sentmsg_cmd("remove_cyclic_msg",channel, id_str, data_str, cycletime_str)               
+            zmq_sentmsg_cmd("remove_cyclic_msg",channel, id_str, data_str, cycletime_str, mywindow)               
             mywindow.terminal.append('[info] ['+ canchannel +'] stop send cyclic message now')
 
            
         #else:
             #mywindow.edit_and_send_flag = 0
     except:
-        mywindow.edit_and_send_flag = 0    #2022.Jan.4th，坏事了，我忘记这个flag是用来干啥的了
-
+        #mywindow.edit_and_send_flag = 0    #2022.Jan.4th，坏事了，我忘记这个flag是用来干啥的了
+        pass
 
 
 
@@ -299,7 +301,7 @@ def edit_custom(mywindow,channel):
     datafield_attr = getattr(mywindow, "datafield_custom_"+channel, None)
     ID_attr = getattr(mywindow, "ID_custom_"+channel, None)
     edit_save_attr = getattr(mywindow, "edit_save_custom_"+channel,None)
-    #cyclic_button_attr = getattr(mywindow, "cyclic_custom_"+channel,None)
+    cyclic_button_attr = getattr(mywindow, "cyclic_custom_"+channel,None)
     cycletime_attr = getattr(mywindow, "cycletime_custom_"+channel,None)
 
     text = edit_save_attr.text()
@@ -346,7 +348,8 @@ def edit_custom(mywindow,channel):
 
             mywindow.terminal.append('[Error] ['+ canchannel +'] Encode completely')
 
-            send_action_cyclic_custom(mywindow, channel)
+            if cyclic_button_attr.isChecked():
+                send_action_cyclic_custom(mywindow, channel)     #编辑完毕，跳转一次循环发送
 
 
 
@@ -371,7 +374,7 @@ def send_action_once_custom(mywindow,channel):
         id_str = str(hex(getattr(mywindow, "custom_framid_"+channel)))
         #cycletime_str = str(getattr(mywindow, "custom_cycletime_"+channel))
 
-        zmq_sentmsg_cmd("send_single_msg", channel, id_str, msg_str, "0")
+        zmq_sentmsg_cmd("send_single_msg", channel, id_str, msg_str, "0", mywindow)
         mywindow.terminal.append('[info] ['+ canchannel +'] send once '+ id_str +"  "+  msg_str)
 
     else:
@@ -395,12 +398,12 @@ def send_action_cyclic_custom(mywindow,channel):
     cycletime_str = str(getattr(mywindow, "custom_cycletime_"+channel))
 
     if cyclic_button_attr.isChecked():
-        zmq_sentmsg_cmd("add_cyclic_msg", channel, id_str, msg_str, cycletime_str)
+        zmq_sentmsg_cmd("add_cyclic_msg", channel, id_str, msg_str, cycletime_str, mywindow)
         mywindow.terminal.append('[info] ['+ canchannel +'] send cyclic '+ id_str +" "+ cycletime_str+"ms  "+  msg_str )
 
     
     else:
-        zmq_sentmsg_cmd("remove_cyclic_msg", channel, id_str, msg_str, cycletime_str)
+        zmq_sentmsg_cmd("remove_cyclic_msg", channel, id_str, msg_str, cycletime_str, mywindow)
         mywindow.terminal.append('[info] ['+ canchannel +'] stop send cyclic '+ id_str +" "+ cycletime_str+"ms  "+  msg_str )
 
 

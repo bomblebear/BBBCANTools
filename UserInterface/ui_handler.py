@@ -8,9 +8,6 @@ from Ui_test import Ui_BBBCAN_Tool
 
 #dbc file and process
 from dbc_handler import *
-import can
-import cantools
-
 
 import button_action
 
@@ -20,11 +17,18 @@ class mywindow(QtWidgets.QMainWindow, Ui_BBBCAN_Tool):
     def __init__(self):
         super(mywindow,self).__init__()
         self.setupUi(self)
+        self.debugflag = 0
 
 
     #定义槽函数
     def Action(self):
         print('button is clicked !')
+
+    def debugmode(self):
+        if self.checkbox_debug.isChecked():
+            self.debugflag = 1
+        else:
+            self.debugflag = 0
 
     #-------------------------------------------------#
     #------------------zmq连接BBB-·--------------------#

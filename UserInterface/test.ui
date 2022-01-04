@@ -1235,7 +1235,7 @@
      <rect>
       <x>860</x>
       <y>10</y>
-      <width>161</width>
+      <width>291</width>
       <height>121</height>
      </rect>
     </property>
@@ -1288,6 +1288,28 @@
      </property>
      <property name="text">
       <string>Exit</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="checkbox_debug">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>30</y>
+       <width>98</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Ubuntu</family>
+       <pointsize>11</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>UI Debug</string>
      </property>
     </widget>
    </widget>
@@ -2281,6 +2303,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>checkbox_debug</sender>
+   <signal>clicked()</signal>
+   <receiver>BBBCAN_Tool</receiver>
+   <slot>debugmode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1061</x>
+     <y>48</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1172</x>
+     <y>27</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>Action()</slot>
@@ -2339,5 +2377,6 @@
   <slot>send_action_cyclic_custom_ch2_1()</slot>
   <slot>send_action_cyclic_custom_ch2_2()</slot>
   <slot>connectBBB()</slot>
+  <slot>debugmode()</slot>
  </slots>
 </ui>
