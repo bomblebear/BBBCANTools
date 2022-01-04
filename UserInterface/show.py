@@ -17,7 +17,7 @@ from ui_handler import mywindow
 import button_action
 
 import time
-now = time.strftime("%Y-%m-%d-%H:%M:%S", time.localtime()) + " : "
+
 
 if __name__ == '__main__':
 
@@ -27,7 +27,7 @@ if __name__ == '__main__':
     window.show()
 
     button_action.attr_init(mywindow)
-
+    #UI界面的terminal
     window.terminal.append('-------------------------------------------------------------------------------------------')
     window.terminal.append('---------https://github.com/bbbearman?tab=repositories--------')
     window.terminal.append('-------------------------------------------------------------------------------------------')

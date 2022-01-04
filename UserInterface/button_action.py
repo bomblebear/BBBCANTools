@@ -6,6 +6,27 @@ import can
 import cantools
 from dbc_handler import dbcfile_acquire,dbc_msg_list
 
+#-------------------------------------------------#
+#------------------zmq连接BBB-·--------------------#
+#-------------------------------------------------#
+#建立zmq通信
+from zmqclient import ZmqClient
+zm = ZmqClient('192.168.7.2', 5555, 10000, 5)  # timeout need to be set a bit longer
+
+def connectBBBact(mywindow):
+    req_0 = {
+    "action": "test"
+    }
+    
+    recv_msg = zm.send_msg(req_0, 5) 
+    if recv_msg == "":
+        mywindow.terminal.append('[error] failed to connect to BBB!')
+    
+    else:
+        print(recv_msg)
+        mywindow.terminal.append('[info] BBB service is ready now!')
+
+
 
     
 #-------------------------------------------------#
@@ -231,8 +252,9 @@ def attr_init(mywindow):
     mywindow.edit_save_flag_custom_ch2 = 0   
 
 
-
-
+#-------------------------------------------------#
+#-----------------自定义报文的Edit键-----------------#
+#-------------------------------------------------#
 
 def edit_custom(mywindow,channel):    
     canchannel = channel[0:-2]
@@ -293,7 +315,9 @@ def edit_custom(mywindow,channel):
 
 
 
-
+#-------------------------------------------------#
+#---------------自定义报文的一次发送键----------------#
+#-------------------------------------------------#
 
 
 def send_action_once_custom(mywindow,channel):
@@ -316,7 +340,9 @@ def send_action_once_custom(mywindow,channel):
     else:
         mywindow.terminal.append('[warning] ['+ canchannel +'] cannot send once when this message sending cyclicly!')
 
-
+#-------------------------------------------------#
+#---------------自定义报文的循环发送键----------------#
+#-------------------------------------------------#
 
 def send_action_cyclic_custom(mywindow,channel):
     canchannel = channel[0:-2]
@@ -327,14 +353,15 @@ def send_action_cyclic_custom(mywindow,channel):
     cyclic_button_attr = getattr(mywindow, "cyclic_custom_"+channel,None)
     #cycletime_attr = getattr(mywindow, "cycletime_custom_"+channel,None)
 
+    msg_str = str(getattr(mywindow, "custom_packedmsg_"+channel).hex('-'))
+    id_str = str(hex(getattr(mywindow, "custom_framid_"+channel)))
+    cycletime_str = str(getattr(mywindow, "custom_cycletime_"+channel))
+
     if cyclic_button_attr.isChecked():
-        msg_str = str(getattr(mywindow, "custom_packedmsg_"+channel).hex('-'))
-        id_str = str(hex(getattr(mywindow, "custom_framid_"+channel)))
-        cycletime_str = str(getattr(mywindow, "custom_cycletime_"+channel))
 
         mywindow.terminal.append('[info] ['+ canchannel +'] send cyclic '+ id_str +" "+ cycletime_str+"ms  "+  msg_str )
     else:
-        mywindow.terminal.append('[warning] ['+ canchannel +'] someting wrong')
+        mywindow.terminal.append('[info] ['+ canchannel +'] stop send cyclic '+ id_str +" "+ cycletime_str+"ms  "+  msg_str )
 
 
 

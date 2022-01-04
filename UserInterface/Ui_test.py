@@ -390,7 +390,6 @@ class Ui_BBBCAN_Tool(object):
         self.tabWidget.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(0)
         self.closebutton.clicked.connect(BBBCAN_Tool.close)
-        self.pushButton.clicked.connect(BBBCAN_Tool.Action)
         self.button_dbc1.clicked.connect(BBBCAN_Tool.button_action_dbc1)
         self.button_dbc2.clicked.connect(BBBCAN_Tool.button_action_dbc2)
         self.comboBox_ch1_1.currentIndexChanged['QString'].connect(BBBCAN_Tool.msg_select_action_ch1_1)
@@ -445,6 +444,7 @@ class Ui_BBBCAN_Tool(object):
         self.send_custom_ch2_2.clicked.connect(BBBCAN_Tool.send_action_once_custom_ch2_2)
         self.cyclic_custom_ch2_1.clicked.connect(BBBCAN_Tool.send_action_cyclic_custom_ch2_1)
         self.cyclic_custom_ch2_2.clicked.connect(BBBCAN_Tool.send_action_cyclic_custom_ch2_2)
+        self.pushButton.clicked.connect(BBBCAN_Tool.connectBBB)
         QtCore.QMetaObject.connectSlotsByName(BBBCAN_Tool)
 
     def retranslateUi(self, BBBCAN_Tool):

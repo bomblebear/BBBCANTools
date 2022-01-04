@@ -1402,22 +1402,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>BBBCAN_Tool</receiver>
-   <slot>Action()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>910</x>
-     <y>60</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>853</x>
-     <y>52</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>button_dbc1</sender>
    <signal>clicked()</signal>
    <receiver>BBBCAN_Tool</receiver>
@@ -2281,6 +2265,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BBBCAN_Tool</receiver>
+   <slot>connectBBB()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>972</x>
+     <y>63</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1081</x>
+     <y>82</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>Action()</slot>
@@ -2338,5 +2338,6 @@
   <slot>send_action_cyclic_custom_ch1_2()</slot>
   <slot>send_action_cyclic_custom_ch2_1()</slot>
   <slot>send_action_cyclic_custom_ch2_2()</slot>
+  <slot>connectBBB()</slot>
  </slots>
 </ui>
