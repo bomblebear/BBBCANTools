@@ -2,6 +2,7 @@ import zmq
 import sys
 import json
 from time import *
+import threading
 
 debug_flag = 0
 
@@ -27,7 +28,7 @@ class ZmqClient(object):
 
     # def send_msg(self, msg_json, timeout=None, retry=None):
     def send_msg(self, msg_json, retry=None):
-        print(strftime("%Y-%m-%d %H:%M:%S", localtime()))
+        #print(strftime("%Y-%m-%d %H:%M:%S", localtime()))
         # if timeout and timeout != self.rcv_timeout:
         #     self.rcv_timeout = timeout
         #     self.socket.close()
@@ -63,7 +64,10 @@ class ZmqClient(object):
         self.socket.close()
 
 
+#主进程：用于接收上位机的命令以及反馈信息
 zm1 = ZmqClient('192.168.7.2', 5555, 10000, 5)  # timeout need to be set a bit longer
+#子进程，用于持续向上位机发送接收到的CAN报文
+zm2 = ZmqClient('192.168.7.2', 5554, 10000, 1)  # timeout need to be set a bit longer
 
 
 #channel: "ch1_1"
@@ -85,7 +89,27 @@ def zmq_sentmsg_cmd(cmd_str, channel_str, msg_id_str, data_str, cycletime_ms_str
         pass
 
 
+
+
+class RecvThread (threading.Thread):   #继承父类threading.Thread
+    def __init__(self, window):
+        threading.Thread.__init__(self)
+        self.window = window
+
+    def run(self):                   #把要执行的代码写到run函数里面 线程在创建后会直接运行run函数 
+
+        while True:
+        
+            recv_msg = zm2.send_msg("trigger", 1)
+
+            self.window.cantrace.append(str(recv_msg))
+
+            #print(recv_msg)
+
+
+
 if __name__ == "__main__":
+    
     req_0 = {
         "action": "bring_up"
     }
@@ -94,7 +118,14 @@ if __name__ == "__main__":
         "bus": "CDC",
         "msg_name": "CGW_02"
     }
+    
+    thread1 = RecvThread("zmqrecev")
+    thread1.start()
+
 
     #zm1 = ZmqClient('192.168.7.2', 5555, 10000, 5)  # timeout need to be set a bit longer
+    
+    
     recv_msg = zm1.send_msg(req_0, 5) 
     print(recv_msg)
+

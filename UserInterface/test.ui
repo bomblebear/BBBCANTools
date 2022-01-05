@@ -1313,7 +1313,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QTextBrowser" name="refresh_diag">
+   <widget class="QTextBrowser" name="cantrace">
     <property name="geometry">
      <rect>
       <x>660</x>

@@ -26,6 +26,7 @@ def str2bytearray(str):
 
 
 
+
 if __name__ == "__main__":
 
     str = "00-11-00"

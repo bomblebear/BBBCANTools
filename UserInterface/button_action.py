@@ -11,7 +11,7 @@ import utils
 #------------------zmq连接BBB-·--------------------#
 #-------------------------------------------------#
 #建立zmq通信
-from zmqclient import ZmqClient, zmq_sentmsg_cmd
+from zmqclient import ZmqClient, zmq_sentmsg_cmd, RecvThread
 zm = ZmqClient('192.168.7.2', 5555, 10000, 5)  # timeout need to be set a bit longer
 
 '''
@@ -26,6 +26,14 @@ read_single_msg
 
 
 def connectBBBact(mywindow):
+
+    thread1 = RecvThread(mywindow)
+    thread1.start()
+
+
+
+
+
     req = {
     "action": "test"
     }
@@ -346,7 +354,7 @@ def edit_custom(mywindow,channel):
             
             setattr(mywindow, "edit_save_flag_custom_"+canchannel, 0)   #编辑状态清空
 
-            mywindow.terminal.append('[Error] ['+ canchannel +'] Encode completely')
+            mywindow.terminal.append('[info] ['+ canchannel +'] Encode completely')
 
             if cyclic_button_attr.isChecked():
                 send_action_cyclic_custom(mywindow, channel)     #编辑完毕，跳转一次循环发送
