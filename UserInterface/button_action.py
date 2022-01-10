@@ -27,27 +27,33 @@ read_single_msg
 
 def connectBBBact(mywindow):
 
-    thread1 = RecvThread(mywindow)
-    thread1.start()
-
-
-
-
-
+    mywindow.thread1 = RecvThread(mywindow)
+    mywindow.thread1.start()
+    
     req = {
     "action": "test"
     }
     
-    recv_msg = zm.send_msg(req, 5) 
-    if recv_msg == "":
-        mywindow.terminal.append('[error] failed to connect to BBB!')
+
+    if mywindow.debugflag == 0:
+
+        recv_msg = zm.send_msg(req, 5) 
+        if recv_msg == "":
+            mywindow.terminal.append('[error] failed to connect to BBB!')
+        
+        else:
+            print(recv_msg)
+            mywindow.terminal.append('[info] BBB service is ready now!')
     
     else:
-        print(recv_msg)
-        mywindow.terminal.append('[info] BBB service is ready now!')
+        pass
 
 
-
+def exit_act(mywindow):
+    try:
+        mywindow.thread1.stop_thread()
+    except:
+        pass
     
 #-------------------------------------------------#
 #-------------------dbc获取函数--------------------#

@@ -18,8 +18,11 @@ class mywindow(QtWidgets.QMainWindow, Ui_BBBCAN_Tool):
         super(mywindow,self).__init__()
         self.setupUi(self)
         self.debugflag = 0
-
-
+    
+    #重新关闭事件函数，用于杀灭进程
+    def closeEvent(self,event):
+        button_action.exit_act(self)
+    
     #定义槽函数
     def Action(self):
         print('button is clicked !')
@@ -35,7 +38,6 @@ class mywindow(QtWidgets.QMainWindow, Ui_BBBCAN_Tool):
     #-------------------------------------------------#
     def connectBBB(self):
         button_action.connectBBBact(self)
-
 
     #-------------------------------------------------#
     #------------------dbc 获取------------------------#

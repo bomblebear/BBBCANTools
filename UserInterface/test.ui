@@ -2378,5 +2378,6 @@
   <slot>send_action_cyclic_custom_ch2_2()</slot>
   <slot>connectBBB()</slot>
   <slot>debugmode()</slot>
+  <slot>exit_aciton()</slot>
  </slots>
 </ui>

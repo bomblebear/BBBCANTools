@@ -3,6 +3,8 @@ import sys
 import json
 from time import *
 import threading
+import ctypes
+import inspect
 
 debug_flag = 0
 
@@ -80,7 +82,7 @@ def zmq_sentmsg_cmd(cmd_str, channel_str, msg_id_str, data_str, cycletime_ms_str
     "cycletime": cycletime_ms_str 
     }
 
-    if mywindow.debugflag == 0:
+    if mywindow.debugflag == 0:                  
 
         recv_msg = zm1.send_msg(req, 1)
         print(recv_msg)
@@ -89,9 +91,8 @@ def zmq_sentmsg_cmd(cmd_str, channel_str, msg_id_str, data_str, cycletime_ms_str
         pass
 
 
-
-
-class RecvThread (threading.Thread):   #继承父类threading.Thread
+#线程父类的重写也在这里定义
+class RecvThread(threading.Thread):   #继承父类threading.Thread
     def __init__(self, window):
         threading.Thread.__init__(self)
         self.window = window
@@ -101,10 +102,36 @@ class RecvThread (threading.Thread):   #继承父类threading.Thread
         while True:
         
             recv_msg = zm2.send_msg("trigger", 1)
+            try:
+                self.window.cantrace.append(str(recv_msg))
+                #print(recv_msg)
+            except:
+                print("no terminal now, please check the UI status")
+    
 
-            self.window.cantrace.append(str(recv_msg))
+    
+    
 
-            #print(recv_msg)
+    def _async_raise(self, tid, exctype):
+        """raises the exception, performs cleanup if needed"""
+        tid = ctypes.c_long(tid)
+        if not inspect.isclass(exctype):
+            exctype = type(exctype)
+        res = ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, ctypes.py_object(exctype))
+        if res == 0:
+            raise ValueError("invalid thread id")
+        elif res != 1:
+            # """if it returns a number greater than one, you're in trouble,
+            # and you should call it again with exc=NULL to revert the effect"""
+            ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, None)
+            raise SystemError("PyThreadState_SetAsyncExc failed")
+    
+    
+    def stop_thread(self):
+        self._async_raise(self.ident, SystemExit)
+
+
+
 
 
 
