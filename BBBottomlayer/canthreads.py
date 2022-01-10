@@ -10,8 +10,6 @@ from aenum import NoAliasEnum
 import can
 import logging
 
-from can.interfaces.socketcan.constants import CAN_BCM
-
 logger = logging.getLogger('BBBCAN')
 
 
@@ -27,9 +25,8 @@ class can_agent():
 
         try:
             bus.send(msg)
-            logger.info("send msg successfully")
         except can.CanError:
-            logger.error("cannot sned msg")
+            logger.error("cannot send msg "+ str(msg_id))
 
 
     def send_cyclic(self, canchannel, msg_id, msg_data, cycletime):
@@ -46,14 +43,17 @@ class can_agent():
         except:
             pass
         
-        setattr(self, str(canchannel)+str(msg_id) ,  bus.send_periodic(msg, cycletime*0.001) )
+        try:
+            setattr(self, str(canchannel)+str(msg_id) ,  bus.send_periodic(msg, cycletime*0.001) )
+        except:
+            logger.error("cannot send msg "+ str(msg_id))
 
         print(str(canchannel)+str(msg_id))
 
 
 
-
 if __name__ =='__main__':
+
     print('start now')
     #send_one('can0', 0x310, b'\x00\x00\x00\x00\x00\x00\x00\x00')
     can_agent = can_agent()
