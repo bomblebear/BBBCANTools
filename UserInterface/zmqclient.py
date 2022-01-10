@@ -107,10 +107,8 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
                 #print(recv_msg)
             except:
                 print("no terminal now, please check the UI status")
-    
+ 
 
-    
-    
 
     def _async_raise(self, tid, exctype):
         """raises the exception, performs cleanup if needed"""
