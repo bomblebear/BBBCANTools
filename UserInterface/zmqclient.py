@@ -6,6 +6,8 @@ import threading
 import ctypes
 import inspect
 
+from zmq.sugar import context, socket
+
 debug_flag = 0
 
 
@@ -127,6 +129,56 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
     
     def stop_thread(self):
         self._async_raise(self.ident, SystemExit)
+
+
+
+#线程父类的重写也在这里定义
+class RecvThread_Sub(threading.Thread):   #继承父类threading.Thread
+    def __init__(self , ip_and_port, tracewindow):
+        threading.Thread.__init__(self)
+        self.addr = ip_and_port
+        self.tracewindow = tracewindow
+
+    def run(self):                   #把要执行的代码写到run函数里面 线程在创建后会直接运行run函数 
+
+        context = zmq.Context()
+        socket = context.socket(zmq.SUB)
+        socket.connect(self.addr)
+        #socket.setsockopt_string(zmq.SUBSCRIBE,'')
+        
+
+        while True:
+        
+            recv_msg = socket.recv_string
+            try:
+                self.tracewindow.append(str(recv_msg))
+                print(recv_msg)
+            except:
+                print("no terminal now, please check the UI status")
+ 
+
+    def _async_raise(self, tid, exctype):
+        """raises the exception, performs cleanup if needed"""
+        tid = ctypes.c_long(tid)
+        if not inspect.isclass(exctype):
+            exctype = type(exctype)
+        res = ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, ctypes.py_object(exctype))
+        if res == 0:
+            raise ValueError("invalid thread id")
+        elif res != 1:
+            # """if it returns a number greater than one, you're in trouble,
+            # and you should call it again with exc=NULL to revert the effect"""
+            ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, None)
+            raise SystemError("PyThreadState_SetAsyncExc failed")
+    
+    
+    def stop_thread(self):
+        self._async_raise(self.ident, SystemExit)
+
+
+
+
+
 
 
 

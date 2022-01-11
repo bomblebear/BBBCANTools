@@ -11,6 +11,12 @@ import threading
 import ctypes
 import inspect
 
+import zmq
+import json
+
+
+import re
+
 logger = logging.getLogger('BBBCAN')
 
 
@@ -70,25 +76,56 @@ class can_agent():
 #该线程用于接收所有CAN报文用以发送至zmq
 #需要两路，一路用于CAN1，一路用于CAN2
 class RecvThread(threading.Thread):   #继承父类threading.Thread
-    def __init__(self,canbus):
+    def __init__(self,canbus,port):
         threading.Thread.__init__(self)
         self.canbus = canbus
+        self.port = port
 
 
     def run(self):                   #把要执行的代码写到run函数里面 线程在创建后会直接运行run函数 
+
+        logger.info("starting the thread, port in {port}".format(port=self.port))
+
+        context = zmq.Context()
+        socket = context.socket(zmq.REP)
+        #socket.bind("tcp://*:5554")
+        socket.bind(self.port)
+        
         bus = can.interface.Bus(channel = self.canbus, bustype = 'socketcan')
 
-        #bus.state = BusState.PASSIVE
+        while True:
+            msg = bus.recv(1)
+            if msg is not None:
+                
+                timestamp_str = str(msg.timestamp)
+                msg_id_str = str(hex(msg.arbitration_id))
+                canbus_str = msg.channel                    
+                
+                data_str = str(msg.data.hex())
+                pattern = re.compile('.{2}')
+                data_str = '-'.join(pattern.findall(data_str))
+                '''
+                python3.7只能上面这样，如果是python3.8：
+                data_str = str(msg.data.hex(‘-’))    
+                '''
 
-        try:
-            while True:
-                msg = bus.recv(1)
-                if msg is not None:
-                    print(msg)
+
+                
 
 
-        except KeyboardInterrupt:
-            pass  # exit normally
+
+                req = {
+                    "timestamp": timestamp_str,
+                    "msg_id": msg_id_str,
+                    "data": data_str,
+                    "bus": canbus_str, 
+                    }
+
+                socket.recv()
+                #socket.send('yes'.encode("utf-8"))
+                socket.send(json.dumps(req).encode('utf-8'))
+                    
+
 
  
     def _async_raise(self, tid, exctype):
@@ -112,11 +149,12 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
 
 
 
+
 if __name__ =='__main__':
 
     
-    thread1 = RecvThread('can0')
-    thread2 = RecvThread('can1')
+    thread1 = RecvThread('can0',"tcp://*:5554")
+    thread2 = RecvThread('can1',"tcp://*:5553")
 
     thread1.start()
     thread2.start()
@@ -126,6 +164,8 @@ if __name__ =='__main__':
     can_agent = can_agent()
     print('send one')
     can_agent.send_one('can0', 0x310, b'\x00\x00\x00\x00\x00\x00\x00\x00')
+
+    print(type(b'\x00\x00\x00\x00\x00\x00\x00\x00'))
     
     can_agent.send_cyclic('can0', 0x310, b'\x00\x00\x00\x00\x00\x00\x00\x00',500)
     can_agent.send_cyclic('can1', 0x310, b'\x00\x00\x00\x00\x00\x00\x00\x00',500)
@@ -138,8 +178,22 @@ if __name__ =='__main__':
     can_agent.send_cyclic('can1', 0x310, b'\x00\x00\x00\x00\x00\x00\x00\x11',500)
     sleep(2)
 
-    can_agent.stop_cyclic('can0', 0x310)
+    #can_agent.stop_cyclic('can0', 0x310)
 
-    thread1.stop_thread()
-    thread2.stop_thread()
+    #主进程：用于接收上位机的命令以及反馈信息
+    context_main = zmq.Context()
+    socket_main = context_main.socket(zmq.REP)
+    socket_main.bind("tcp://*:5555")
+
+
+    while True:
+        message = socket_main.recv()
+        msg = message.decode('utf-8')
+        #print(msg)
+        msg_json = json.loads(msg)
+        print(msg_json)
+        #logger.info('Zmq request from client recved: {}'.format(msg_json))
+        #return_msg = ActionCommon(can_bus_obj, msg_json)
+        socket_main.send("main port response!".encode("utf-8"))
+        #logger.info('Zmq response from server sent: {}'.format(return_msg.encode('utf-8')))  
 

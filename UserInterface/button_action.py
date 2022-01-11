@@ -28,9 +28,11 @@ read_single_msg
 def connectBBBact(mywindow):
 
     mywindow.thread1 = RecvThread(zmq_1, mywindow.cantrace_1)
+    #mywindow.thread1 = RecvThread_Sub("tcp://192.168.7.2:5554",mywindow.cantrace_1)
     mywindow.thread1.start()
 
     mywindow.thread2 = RecvThread(zmq_2, mywindow.cantrace_2)
+    #mywindow.thread2 = RecvThread_Sub("tcp://192.168.7.2:5553",mywindow.cantrace_2)
     mywindow.thread2.start()
 
     req = {
@@ -389,6 +391,7 @@ def send_action_once_custom(mywindow,channel):
 
     if not cyclic_button_attr.isChecked():
         msg_str = str(getattr(mywindow, "custom_packedmsg_"+channel).hex('-'))
+
         id_str = str(hex(getattr(mywindow, "custom_framid_"+channel)))
         #cycletime_str = str(getattr(mywindow, "custom_cycletime_"+channel))
 

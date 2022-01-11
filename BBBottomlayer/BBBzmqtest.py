@@ -23,6 +23,7 @@ class myThread (threading.Thread):   #继承父类threading.Thread
 
         context = zmq.Context()
         socket = context.socket(zmq.REP)
+        
         #socket.bind("tcp://*:5554")
         socket.bind(self.port)
 
@@ -30,9 +31,9 @@ class myThread (threading.Thread):   #继承父类threading.Thread
 
             socket.recv()
             socket.send("this thread will continue send msg in {port}".format(port = self.port).encode("utf-8"))
-
+            #print("i am sending {port}".format(port = self.port))
             #print("yes")
-            sleep(0.1)
+            sleep(0.2)
 
 
 
