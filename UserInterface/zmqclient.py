@@ -105,8 +105,18 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
         while True:
         
             recv_msg = self.zmq.send_msg("trigger", 1)
+            recv_msg = recv_msg.decode('utf-8')
+            msg_json = json.loads(recv_msg)
+            
+            debugstr = '{chn}   {id}   {data}   {time}'.format( 
+                chn  = msg_json.get('bus'),
+                id   = msg_json.get('msg_id'),
+                data = msg_json.get('data'),
+                time = msg_json.get('timestamp')
+                )
+
             try:
-                self.tracewindow.append(str(recv_msg))
+                self.tracewindow.append(debugstr)
                 #print(recv_msg)
             except:
                 print("no terminal now, please check the UI status")

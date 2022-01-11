@@ -97,7 +97,10 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
             msg = bus.recv(1)
             if msg is not None:
                 
+
+
                 timestamp_str = str(msg.timestamp)
+            
                 msg_id_str = str(hex(msg.arbitration_id))
                 canbus_str = msg.channel                    
                 
@@ -109,11 +112,6 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
                 data_str = str(msg.data.hex(‘-’))    
                 '''
 
-
-                
-
-
-
                 req = {
                     "timestamp": timestamp_str,
                     "msg_id": msg_id_str,
@@ -124,6 +122,7 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
                 socket.recv()
                 #socket.send('yes'.encode("utf-8"))
                 socket.send(json.dumps(req).encode('utf-8'))
+                sleep(1)
                     
 
 
