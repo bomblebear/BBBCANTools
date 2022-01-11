@@ -67,10 +67,10 @@ class ZmqClient(object):
 
 
 #主进程：用于接收上位机的命令以及反馈信息
-zm1 = ZmqClient('192.168.7.2', 5555, 10000, 5)  # timeout need to be set a bit longer
+zmq_main = ZmqClient('192.168.7.2', 5555, 10000, 5)  # timeout need to be set a bit longer
 #子进程，用于持续向上位机发送接收到的CAN报文
-zm2 = ZmqClient('192.168.7.2', 5554, 10000, 1)  # timeout need to be set a bit longer
-
+zmq_1 = ZmqClient('192.168.7.2', 5554, 10000, 1)  # timeout need to be set a bit longer
+zmq_2 = ZmqClient('192.168.7.2', 5553, 10000, 1)  # timeout need to be set a bit longer
 
 #channel: "ch1_1"
 def zmq_sentmsg_cmd(cmd_str, channel_str, msg_id_str, data_str, cycletime_ms_str, mywindow):
@@ -84,7 +84,7 @@ def zmq_sentmsg_cmd(cmd_str, channel_str, msg_id_str, data_str, cycletime_ms_str
 
     if mywindow.debugflag == 0:                  
 
-        recv_msg = zm1.send_msg(req, 1)
+        recv_msg = zmq_main.send_msg(req, 1)
         print(recv_msg)
     
     else:
@@ -93,22 +93,22 @@ def zmq_sentmsg_cmd(cmd_str, channel_str, msg_id_str, data_str, cycletime_ms_str
 
 #线程父类的重写也在这里定义
 class RecvThread(threading.Thread):   #继承父类threading.Thread
-    def __init__(self, window):
+    def __init__(self , zm_channel , tracewindow):
         threading.Thread.__init__(self)
-        self.window = window
+        self.zmq = zm_channel
+        self.tracewindow = tracewindow
 
     def run(self):                   #把要执行的代码写到run函数里面 线程在创建后会直接运行run函数 
 
         while True:
         
-            recv_msg = zm2.send_msg("trigger", 1)
+            recv_msg = self.zmq.send_msg("trigger", 1)
             try:
-                self.window.cantrace.append(str(recv_msg))
+                self.tracewindow.append(str(recv_msg))
                 #print(recv_msg)
             except:
                 print("no terminal now, please check the UI status")
  
-
 
     def _async_raise(self, tid, exctype):
         """raises the exception, performs cleanup if needed"""
@@ -131,8 +131,6 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
 
 
 
-
-
 if __name__ == "__main__":
     
     req_0 = {
@@ -143,14 +141,15 @@ if __name__ == "__main__":
         "bus": "CDC",
         "msg_name": "CGW_02"
     }
-    
-    thread1 = RecvThread("zmqrecev")
+
+    thread1 = RecvThread( zmq_1 , None)
     thread1.start()
-
-
+    
+    thread2 = RecvThread( zmq_2 , None)
+    thread2.start()
+    
     #zm1 = ZmqClient('192.168.7.2', 5555, 10000, 5)  # timeout need to be set a bit longer
     
-    
-    recv_msg = zm1.send_msg(req_0, 5) 
+    recv_msg = zmq_main.send_msg(req_0, 5) 
     print(recv_msg)
 

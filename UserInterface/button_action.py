@@ -11,8 +11,8 @@ import utils
 #------------------zmq连接BBB-·--------------------#
 #-------------------------------------------------#
 #建立zmq通信
-from zmqclient import ZmqClient, zmq_sentmsg_cmd, RecvThread
-zm = ZmqClient('192.168.7.2', 5555, 10000, 5)  # timeout need to be set a bit longer
+from zmqclient import *
+#zm = ZmqClient('192.168.7.2', 5555, 10000, 5)  # timeout need to be set a bit longer
 
 '''
 aciton:
@@ -27,9 +27,12 @@ read_single_msg
 
 def connectBBBact(mywindow):
 
-    mywindow.thread1 = RecvThread(mywindow)
+    mywindow.thread1 = RecvThread(zmq_1, mywindow.cantrace_1)
     mywindow.thread1.start()
-    
+
+    mywindow.thread2 = RecvThread(zmq_2, mywindow.cantrace_2)
+    mywindow.thread2.start()
+
     req = {
     "action": "test"
     }
@@ -37,7 +40,7 @@ def connectBBBact(mywindow):
 
     if mywindow.debugflag == 0:
 
-        recv_msg = zm.send_msg(req, 5) 
+        recv_msg = zmq_main.send_msg(req, 5) 
         if recv_msg == "":
             mywindow.terminal.append('[error] failed to connect to BBB!')
         
@@ -52,6 +55,7 @@ def connectBBBact(mywindow):
 def exit_act(mywindow):
     try:
         mywindow.thread1.stop_thread()
+        mywindow.thread2.stop_thread()
     except:
         pass
     

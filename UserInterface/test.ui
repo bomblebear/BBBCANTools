@@ -1313,16 +1313,6 @@
      </property>
     </widget>
    </widget>
-   <widget class="QTextBrowser" name="cantrace">
-    <property name="geometry">
-     <rect>
-      <x>660</x>
-      <y>570</y>
-      <width>521</width>
-      <height>221</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTextBrowser" name="terminal">
     <property name="geometry">
      <rect>
@@ -1397,6 +1387,49 @@
         <y>10</y>
         <width>351</width>
         <height>341</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QTabWidget" name="tabWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>540</y>
+      <width>631</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+     <widget class="QTextBrowser" name="cantrace_1">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>611</width>
+        <height>191</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_4">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+     <widget class="QTextBrowser" name="cantrace_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>611</width>
+        <height>191</height>
        </rect>
       </property>
      </widget>
