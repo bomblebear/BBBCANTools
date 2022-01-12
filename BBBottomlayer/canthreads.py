@@ -98,7 +98,6 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
             if msg is not None:
                 
 
-
                 timestamp_str = str(msg.timestamp)
             
                 msg_id_str = str(hex(msg.arbitration_id))
@@ -122,7 +121,7 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
                 socket.recv()
                 #socket.send('yes'.encode("utf-8"))
                 socket.send(json.dumps(req).encode('utf-8'))
-                sleep(1)
+                sleep(0.5)
                     
 
 
@@ -173,8 +172,11 @@ if __name__ =='__main__':
 
     print('update send cyclic')
 
-    can_agent.send_cyclic('can0', 0x310, b'\x00\x00\x00\x00\x00\x00\x00\x11',500)
+    can_agent.send_cyclic('can0', 0x111, b'\x00\x00\x00\x00\x00\x00\x00\x11',500)
+    can_agent.send_cyclic('can0', 0x333, b'\x00\x00\x00\x00\x00\x00\x00\x11',500)
+
     can_agent.send_cyclic('can1', 0x310, b'\x00\x00\x00\x00\x00\x00\x00\x11',500)
+    can_agent.send_cyclic('can1', 0x345, b'\x00\x00\x00\x00\x00\x00\x00\x11',500)
     sleep(2)
 
     #can_agent.stop_cyclic('can0', 0x310)

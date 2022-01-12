@@ -27,14 +27,18 @@ read_single_msg
 
 def connectBBBact(mywindow):
 
+    try:
+        mywindow.thread1.stop_thread()
+        mywindow.thread2.stop_thread()
+    except:
+        pass
+
     mywindow.thread1 = RecvThread(zmq_1, mywindow.cantrace_1)
-    #mywindow.thread1 = RecvThread_Sub("tcp://192.168.7.2:5554",mywindow.cantrace_1)
     mywindow.thread1.start()
 
     mywindow.thread2 = RecvThread(zmq_2, mywindow.cantrace_2)
-    #mywindow.thread2 = RecvThread_Sub("tcp://192.168.7.2:5553",mywindow.cantrace_2)
     mywindow.thread2.start()
-
+    '''
     req = {
     "action": "test"
     }
@@ -52,9 +56,12 @@ def connectBBBact(mywindow):
     
     else:
         pass
+    '''
 
 
 def exit_act(mywindow):
+
+
     try:
         mywindow.thread1.stop_thread()
         mywindow.thread2.stop_thread()

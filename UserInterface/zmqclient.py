@@ -6,7 +6,6 @@ import threading
 import ctypes
 import inspect
 
-from zmq.sugar import context, socket
 
 debug_flag = 0
 
@@ -51,7 +50,7 @@ class ZmqClient(object):
                 self.socket.send(json.dumps(msg_json).encode('utf-8'))
                 recv_msg = self.socket.recv()
             except (zmq.error.Again, zmq.error.ZMQError) as e:
-                print("{} zmq connection not available currently".format(strftime("%Y-%m-%d %H:%M:%S", localtime())))
+                print("{time} {port} zmq connection not available currently".format(time = strftime("%Y-%m-%d %H:%M:%S", localtime()), port = self.port))
                 # self.socket.disconnect("tcp://{addr}:{p}".format(addr=self.address, p=self.port))
                 self.socket.close()
                 sleep(1)
@@ -87,6 +86,9 @@ def zmq_sentmsg_cmd(cmd_str, channel_str, msg_id_str, data_str, cycletime_ms_str
     if mywindow.debugflag == 0:                  
 
         recv_msg = zmq_main.send_msg(req, 1)
+
+        mywindow.terminal.append(recv_msg.decode('utf-8'))
+        
         print(recv_msg)
     
     else:
@@ -102,25 +104,42 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
 
     def run(self):                   #把要执行的代码写到run函数里面 线程在创建后会直接运行run函数 
 
+        trace = {}   #empty dictionary
+
         while True:
-        
-            recv_msg = self.zmq.send_msg("trigger", 1)
-            recv_msg = recv_msg.decode('utf-8')
-            msg_json = json.loads(recv_msg)
             
-            debugstr = '{chn}   {id}   {data}   {time}'.format( 
-                chn  = msg_json.get('bus'),
-                id   = msg_json.get('msg_id'),
-                data = msg_json.get('data'),
-                time = msg_json.get('timestamp')
-                )
-
             try:
+                recv_msg = self.zmq.send_msg("trigger", 1)
+                recv_msg = recv_msg.decode('utf-8')
+                msg_json = json.loads(recv_msg)
+                
+
+                debugstr = '{chn}   {id}   {data}   {time}'.format( 
+                    chn  = msg_json.get('bus'),
+                    id   = msg_json.get('msg_id'),
+                    data = msg_json.get('data'),
+                    time = msg_json.get('timestamp')
+                    )
+                
+                #用ID作键，值为以上的字符串
+                trace[msg_json.get('msg_id')] = debugstr
+            except:
+                break  ####2022.Jan.12
+
+            
+            try:
+                #self.tracewindow.clear()
+            
                 self.tracewindow.append(debugstr)
-                #print(recv_msg)
+                '''
+                for key in trace:
+                    self.tracewindow.append(trace[key])
+                '''
+
             except:
+                break ####2022.Jan.12
                 print("no terminal now, please check the UI status")
- 
+            
 
     def _async_raise(self, tid, exctype):
         """raises the exception, performs cleanup if needed"""
@@ -136,58 +155,9 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
             ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, None)
             raise SystemError("PyThreadState_SetAsyncExc failed")
     
-    
     def stop_thread(self):
         self._async_raise(self.ident, SystemExit)
-
-
-
-#线程父类的重写也在这里定义
-class RecvThread_Sub(threading.Thread):   #继承父类threading.Thread
-    def __init__(self , ip_and_port, tracewindow):
-        threading.Thread.__init__(self)
-        self.addr = ip_and_port
-        self.tracewindow = tracewindow
-
-    def run(self):                   #把要执行的代码写到run函数里面 线程在创建后会直接运行run函数 
-
-        context = zmq.Context()
-        socket = context.socket(zmq.SUB)
-        socket.connect(self.addr)
-        #socket.setsockopt_string(zmq.SUBSCRIBE,'')
         
-
-        while True:
-        
-            recv_msg = socket.recv_string
-            try:
-                self.tracewindow.append(str(recv_msg))
-                print(recv_msg)
-            except:
-                print("no terminal now, please check the UI status")
- 
-
-    def _async_raise(self, tid, exctype):
-        """raises the exception, performs cleanup if needed"""
-        tid = ctypes.c_long(tid)
-        if not inspect.isclass(exctype):
-            exctype = type(exctype)
-        res = ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, ctypes.py_object(exctype))
-        if res == 0:
-            raise ValueError("invalid thread id")
-        elif res != 1:
-            # """if it returns a number greater than one, you're in trouble,
-            # and you should call it again with exc=NULL to revert the effect"""
-            ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, None)
-            raise SystemError("PyThreadState_SetAsyncExc failed")
-    
-    
-    def stop_thread(self):
-        self._async_raise(self.ident, SystemExit)
-
-
-
-
 
 
 
