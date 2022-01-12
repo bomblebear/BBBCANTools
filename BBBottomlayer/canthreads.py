@@ -87,14 +87,14 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
         logger.info("starting the thread, port in {port}".format(port=self.port))
 
         context = zmq.Context()
-        socket = context.socket(zmq.REP)
+        socket = context.socket(zmq.PUB)
         #socket.bind("tcp://*:5554")
         socket.bind(self.port)
         
         bus = can.interface.Bus(channel = self.canbus, bustype = 'socketcan')
 
         while True:
-            msg = bus.recv(1)
+            msg = bus.recv(0)
             if msg is not None:
                 
 
@@ -118,10 +118,8 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
                     "bus": canbus_str, 
                     }
 
-                socket.recv()
-                #socket.send('yes'.encode("utf-8"))
-                socket.send(json.dumps(req).encode('utf-8'))
-                sleep(0.5)
+                socket.send_json(req)
+           
                     
 
 

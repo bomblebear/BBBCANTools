@@ -33,10 +33,12 @@ def connectBBBact(mywindow):
     except:
         pass
 
-    mywindow.thread1 = RecvThread(zmq_1, mywindow.cantrace_1)
+
+    mywindow.thread1 = RecvThreadSub('tcp://192.168.7.2:5554', mywindow.cantrace_1)
     mywindow.thread1.start()
 
-    mywindow.thread2 = RecvThread(zmq_2, mywindow.cantrace_2)
+
+    mywindow.thread2 = RecvThreadSub('tcp://192.168.7.2:5553', mywindow.cantrace_2)
     mywindow.thread2.start()
     '''
     req = {
