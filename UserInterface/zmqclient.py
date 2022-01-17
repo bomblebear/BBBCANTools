@@ -2,9 +2,6 @@ import zmq
 import sys
 import json
 from time import *
-import threading
-import ctypes
-import inspect
 from PyQt5 import QtCore, QtWidgets
 
 debug_flag = 0

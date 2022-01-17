@@ -71,10 +71,8 @@ class can_agent():
 
     def stop_cyclic(self, canchannel, msg_id):
         '''停止发送某ID的报文'''
-
-        self.sendlist.remove(str(canchannel)+str(msg_id))
-
         try:
+            self.sendlist.remove(str(canchannel)+str(msg_id))
             task_attr = getattr( self, str(canchannel)+str(msg_id))
             task_attr.stop()
         except:

@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from sys import byteorder
 import can
 import cantools
 from dbc_handler import dbcfile_acquire,dbc_msg_list
