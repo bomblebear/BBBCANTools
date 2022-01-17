@@ -24,6 +24,9 @@ logger = logging.getLogger('BBBCAN')
 
 class can_agent():
     '''包含发送以及停止相应通道的报文'''
+    def __init__(self):
+        self.sendlist = []   #将所有正在循环发送的报文放在一个列表中，在系统结束时需要停止发送
+
     def send_one(self, canchannel, msg_id, msg_data):
         '''发送单个报文'''
         bus = can.interface.Bus(channel = canchannel, bustype = 'socketcan')
@@ -45,6 +48,11 @@ class can_agent():
         msg = can.Message(
             arbitration_id = msg_id , data= msg_data , is_extended_id = False
         )
+
+        if str(canchannel)+str(msg_id) not in self.sendlist:
+            self.sendlist.append(str(canchannel)+str(msg_id))
+
+
         '''如果有现有报文，先停止后直接重新发送'''
         try:
             task_attr = getattr( self, str(canchannel)+str(msg_id))
@@ -63,6 +71,9 @@ class can_agent():
 
     def stop_cyclic(self, canchannel, msg_id):
         '''停止发送某ID的报文'''
+
+        self.sendlist.remove(str(canchannel)+str(msg_id))
+
         try:
             task_attr = getattr( self, str(canchannel)+str(msg_id))
             task_attr.stop()
@@ -72,6 +83,13 @@ class can_agent():
             print("stop sending {ID} message in {CAN}".format(ID = hex(msg_id), CAN = canchannel))
             logger.info("stop sending {ID} message in {CAN}".format(ID = msg_id, CAN = canchannel))   
 
+    def stop_all(self):
+        for item in self.sendlist:
+            try:
+                task_attr = getattr( self, item )
+                task_attr.stop()
+            except:
+                pass
 
 #该线程用于接收所有CAN报文用以发送至zmq
 #需要两路，一路用于CAN1，一路用于CAN2

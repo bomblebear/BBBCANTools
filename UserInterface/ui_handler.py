@@ -3,7 +3,8 @@
 
 #pyqt5
 import sys
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtWidgets
+from PyQt5.QtGui import QCloseEvent
 from Ui_test import Ui_BBBCAN_Tool
 
 #dbc file and process
@@ -12,6 +13,7 @@ from zmqclient import RecvThreadSub
 
 import button_action
 
+from zmqclient import *
 
 class mywindow(QtWidgets.QMainWindow, Ui_BBBCAN_Tool):
     
@@ -35,6 +37,15 @@ class mywindow(QtWidgets.QMainWindow, Ui_BBBCAN_Tool):
         for item in dict:
             tracewindow.append(dict[item])
     
+
+    def closeEvent(self, e: QCloseEvent):
+        print("i am closing!")
+        req = {
+        "action": "stop"
+        }
+        recv_msg = zmq_main.send_msg(req, 1) 
+
+
 
     #定义槽函数
     def Action(self):

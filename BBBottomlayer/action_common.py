@@ -2,7 +2,9 @@
 # -*-coding:utf-8-*-
 
 
+from cgi import test
 from re import A
+from tracemalloc import stop
 from canthreads import *
 import utils
 
@@ -60,6 +62,20 @@ def send_single_msg(msg):
     return '[BBB] [info] send one msg {ID} in {bus}'.format(ID = id, bus = channel)
 
 
+def test(msg):
+    print('testing')
+    return '[BBB] [info] connected!'
+
+
+def stop(msg):
+    print('UI is closed , stop sending now')
+    can_agent.stop_all()
+    return '[BBB] [info] stop sending all msgs now'
+
+
+
+
+
 
 '''
 msg = {'action': 'add_cyclic_msg', 'bus': 'can0', 'msg_id': '0x321', 'data': '11-22-33-44-55-66-77-88', 'cycletime': '10'}
@@ -70,7 +86,9 @@ def actioncommon(msg):
     action_matrix = {
         'add_cyclic_msg': add_cyclic_msg,
         'remove_cyclic_msg':remove_cyclic_msg,
-        'send_single_msg':send_single_msg
+        'send_single_msg':send_single_msg,
+        'test':test,
+        'stop':stop,
         #updating
     }
 
