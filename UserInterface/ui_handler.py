@@ -35,8 +35,7 @@ class mywindow(QtWidgets.QMainWindow, Ui_BBBCAN_Tool):
         for item in dict:
             tracewindow.append(dict[item])
     
-    
-    
+
     #定义槽函数
     def Action(self):
         print('button is clicked !')
