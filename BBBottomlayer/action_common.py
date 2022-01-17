@@ -8,6 +8,8 @@ import utils
 
 cansim = can_agent()
 
+
+
 def add_cyclic_msg(msg):
 
     #将字符串转成正确要求的格式

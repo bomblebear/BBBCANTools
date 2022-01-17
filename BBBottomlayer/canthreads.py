@@ -93,12 +93,16 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
         
         bus = can.interface.Bus(channel = self.canbus, bustype = 'socketcan')
 
+        counter = 0
+
         while True:
 
             try:
-                msg = bus.recv(0)
+                msg = bus.recv(0.0)
+                
                 if msg is not None:
                     
+                    counter = (counter + 1)%50
 
                     timestamp_str = str(msg.timestamp)
                 
@@ -120,12 +124,13 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
                         "bus": canbus_str, 
                         }
 
-                    socket.send_json(req)
-                    sleep(0.05)
+                    if counter == 1:
+                        socket.send_json(req)
             except:
                 pass
            
-                    
+
+
 
 
  

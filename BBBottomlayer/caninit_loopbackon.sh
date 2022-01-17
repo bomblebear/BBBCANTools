@@ -15,7 +15,10 @@ config-pin P9.24 can
 #-----set bitrate 500k  loopback on
 
 sudo ip link set can0 type can bitrate 500000 loopback on restart-ms 100
+sudo ifconfig can0 txqueuelen 1000
+
 sudo ip link set can1 type can bitrate 500000 loopback on restart-ms 100
+sudo ifconfig can1 txqueuelen 1000
 
 #bring can0&can1 on
 sudo ifconfig can0 up
