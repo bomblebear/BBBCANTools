@@ -5,7 +5,7 @@ from time import *
 import threading
 import ctypes
 import inspect
-
+from PyQt5 import QtCore, QtWidgets
 
 debug_flag = 0
 
@@ -95,77 +95,24 @@ def zmq_sentmsg_cmd(cmd_str, channel_str, msg_id_str, data_str, cycletime_ms_str
         pass
 
 
-#线程父类的重写也在这里定义
-class RecvThread(threading.Thread):   #继承父类threading.Thread
-    def __init__(self , zm_channel , tracewindow):
-        threading.Thread.__init__(self)
-        self.zmq = zm_channel
-        self.tracewindow = tracewindow
-
-    def run(self):                   #把要执行的代码写到run函数里面 线程在创建后会直接运行run函数 
-
-        trace = {}   #empty dictionary
-
-        while True:
-            
-            try:
-                recv_msg = self.zmq.send_msg("trigger", 1)
-                recv_msg = recv_msg.decode('utf-8')
-                msg_json = json.loads(recv_msg)
-                
-
-                debugstr = '{chn}   {id}   {data}   {time}'.format( 
-                    chn  = msg_json.get('bus'),
-                    id   = msg_json.get('msg_id'),
-                    data = msg_json.get('data'),
-                    time = msg_json.get('timestamp')
-                    )
-                
-                #用ID作键，值为以上的字符串
-                trace[msg_json.get('msg_id')] = debugstr
-            except:
-                break  ####2022.Jan.12
-
-            
-            try:
-                #self.tracewindow.clear()
-                if msg_json.get('bus') == '0':
-                    pass
-                else:
-                    self.tracewindow.append(debugstr)
-                '''
-                for key in trace:
-                    self.tracewindow.append(trace[key])
-                '''
-
-            except:
-                break ####2022.Jan.12
-                print("no terminal now, please check the UI status")
-            
-
-    def _async_raise(self, tid, exctype):
-        """raises the exception, performs cleanup if needed"""
-        tid = ctypes.c_long(tid)
-        if not inspect.isclass(exctype):
-            exctype = type(exctype)
-        res = ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, ctypes.py_object(exctype))
-        if res == 0:
-            raise ValueError("invalid thread id")
-        elif res != 1:
-            # """if it returns a number greater than one, you're in trouble,
-            # and you should call it again with exc=NULL to revert the effect"""
-            ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, None)
-            raise SystemError("PyThreadState_SetAsyncExc failed")
-    
-    def stop_thread(self):
-        self._async_raise(self.ident, SystemExit)
 
 
-class RecvThreadSub(threading.Thread):   #继承父类threading.Thread
-    def __init__(self , ip_and_port , tracewindow):
-        threading.Thread.__init__(self)
+class RecvThreadSub(QtCore.QThread):   #继承父类threading.Thread
+
+    sinout = QtCore.pyqtSignal(dict, QtWidgets.QTextBrowser)    #定义发送给主线程的信号
+
+    def __init__(self,ip_and_port , tracewindow, parent=None ,):
+        super(RecvThreadSub, self).__init__(parent)
+        #设置工作状态与初始num数值
+        self.working = True
+        self.num = 0
         self.addr = ip_and_port
-        self.tracewindow = tracewindow
+        self.tracewindow = tracewindow       
+
+    def __del__(self):
+        #线程状态改变与线程终止
+        self.working = False
+        self.wait()
 
     def run(self):                   #把要执行的代码写到run函数里面 线程在创建后会直接运行run函数 
 
@@ -181,51 +128,28 @@ class RecvThreadSub(threading.Thread):   #继承父类threading.Thread
         while True:
             
             try:
-                
                 msg_json = socket.recv_json()
-
                 debugstr = '{chn}   {id}   {data}   {time}'.format( 
                     chn  = msg_json.get('bus'),
                     id   = msg_json.get('msg_id'),
                     data = msg_json.get('data'),
                     time = msg_json.get('timestamp')
                     )
-                
                 #用ID作键，值为以上的字符串
                 trace[msg_json.get('msg_id')] = debugstr
             except:
                 pass
 
-            
             try:
-                #self.tracewindow.clear()
                 if msg_json.get('bus') == '0':
                     pass
                 else:
-                    self.tracewindow.append(debugstr)
+                    #self.tracewindow.append(debugstr)
+                    self.sinout.emit(trace , self.tracewindow)
 
             except:
                 print("no terminal now, please check the UI status")
             
-
-    def _async_raise(self, tid, exctype):
-        """raises the exception, performs cleanup if needed"""
-        tid = ctypes.c_long(tid)
-        if not inspect.isclass(exctype):
-            exctype = type(exctype)
-        res = ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, ctypes.py_object(exctype))
-        if res == 0:
-            raise ValueError("invalid thread id")
-        elif res != 1:
-            # """if it returns a number greater than one, you're in trouble,
-            # and you should call it again with exc=NULL to revert the effect"""
-            ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, None)
-            raise SystemError("PyThreadState_SetAsyncExc failed")
-    
-    def stop_thread(self):
-        self._async_raise(self.ident, SystemExit)
-
-
 
 
 if __name__ == "__main__":

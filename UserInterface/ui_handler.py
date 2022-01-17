@@ -8,6 +8,7 @@ from Ui_test import Ui_BBBCAN_Tool
 
 #dbc file and process
 from dbc_handler import *
+from zmqclient import RecvThreadSub
 
 import button_action
 
@@ -18,10 +19,23 @@ class mywindow(QtWidgets.QMainWindow, Ui_BBBCAN_Tool):
         super(mywindow,self).__init__()
         self.setupUi(self)
         self.debugflag = 0
+
+        self.thread1 = RecvThreadSub('tcp://192.168.7.2:5554', self.cantrace_1)
+        self.thread1.sinout.connect(self.slotAdd)
+
+        self.thread2 = RecvThreadSub('tcp://192.168.7.2:5553', self.cantrace_2)
+        self.thread2.sinout.connect(self.slotAdd)
+
+        self.thread1.start()
+        self.thread2.start()
+
+    def slotAdd(self, dict , tracewindow):
+        #向列表控件中添加条目
+        tracewindow.clear()
+        for item in dict:
+            tracewindow.append(dict[item])
     
-    #重新关闭事件函数，用于杀灭进程
-    def closeEvent(self,event):
-        button_action.exit_act(self)
+    
     
     #定义槽函数
     def Action(self):
