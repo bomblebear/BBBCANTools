@@ -121,6 +121,7 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
                         }
 
                     socket.send_json(req)
+                    sleep(0.05)
             except:
                 pass
            
