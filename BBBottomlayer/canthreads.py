@@ -94,31 +94,35 @@ class RecvThread(threading.Thread):   #继承父类threading.Thread
         bus = can.interface.Bus(channel = self.canbus, bustype = 'socketcan')
 
         while True:
-            msg = bus.recv(0)
-            if msg is not None:
+
+            try:
+                msg = bus.recv(0)
+                if msg is not None:
+                    
+
+                    timestamp_str = str(msg.timestamp)
                 
+                    msg_id_str = str(hex(msg.arbitration_id))
+                    canbus_str = msg.channel                    
+                    
+                    data_str = str(msg.data.hex())
+                    pattern = re.compile('.{2}')
+                    data_str = '-'.join(pattern.findall(data_str))
+                    '''
+                    python3.7只能上面这样，如果是python3.8：
+                    data_str = str(msg.data.hex(‘-’))    
+                    '''
 
-                timestamp_str = str(msg.timestamp)
-            
-                msg_id_str = str(hex(msg.arbitration_id))
-                canbus_str = msg.channel                    
-                
-                data_str = str(msg.data.hex())
-                pattern = re.compile('.{2}')
-                data_str = '-'.join(pattern.findall(data_str))
-                '''
-                python3.7只能上面这样，如果是python3.8：
-                data_str = str(msg.data.hex(‘-’))    
-                '''
+                    req = {
+                        "timestamp": timestamp_str,
+                        "msg_id": msg_id_str,
+                        "data": data_str,
+                        "bus": canbus_str, 
+                        }
 
-                req = {
-                    "timestamp": timestamp_str,
-                    "msg_id": msg_id_str,
-                    "data": data_str,
-                    "bus": canbus_str, 
-                    }
-
-                socket.send_json(req)
+                    socket.send_json(req)
+            except:
+                pass
            
                     
 
